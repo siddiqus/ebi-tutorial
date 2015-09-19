@@ -1,6 +1,23 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope, $ionicModal) {
+
+  $ionicModal.fromTemplateUrl('templates/tutorial-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.tutorialModal = modal;
+  });
+
+  $scope.openTutorial = function() {
+    $scope.activeSlide = 1;
+    $scope.tutorialModal.show();
+  };
+  $scope.closeTutorial = function() {
+    $scope.tutorialModal.hide();
+  };
+
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called

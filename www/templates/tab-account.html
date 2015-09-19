@@ -1,9 +1,30 @@
-<ion-view view-title="Account">
+<ion-view view-title="SETTINGS">
   <ion-content>
+    <div style="padding: 1em; font-size: 1.4em; width: 100%; text-align:center"> Categories </div>
     <ion-list>
-      <ion-radio  ng-model="settings.enableFriends">
-          Enable Friends
-      </ion-radio>
+      <ion-item>
+        <label class="item item-radio">
+          <input type="radio" name="group">
+          <div class="item-content">
+            NEUROANATOMY
+          </div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>
+        <label class="item item-radio">
+          <input type="radio" name="group">
+          <div class="item-content">
+            STATISTICS
+          </div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>
+        <label class="item item-radio">
+          <input type="radio" name="group">
+          <div class="item-content">
+            PSYCHOLOGY 101
+          </div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>

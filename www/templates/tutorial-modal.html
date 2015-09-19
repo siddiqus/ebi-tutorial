@@ -1,0 +1,21 @@
+<div class='modal'>
+  <ion-modal-view>
+     <ion-header-bar class="bar-stable bar-calm">
+       <h1 class="title">TUTORIAL</h1>
+       <button class="button button-primary" ng-click="closeTutorial()"><b>Close</b></button>
+     </ion-header-bar>
+     <ion-content class="card padding">
+       <ion-slide-box does-continue="true" on-slide-changed="slideHasChanged($index)" show-pager='false'>
+        <ion-slide>
+          <div><h1>Step 1</h1></div>
+        </ion-slide>
+        <ion-slide>
+          <div><h1>Step 2</h1></div>
+        </ion-slide>
+        <ion-slide>
+          <div><h1>Step 3</h1></div>
+        </ion-slide>
+      </ion-slide-box>
+     </ion-content>
+   </ion-modal-view>
+</div>

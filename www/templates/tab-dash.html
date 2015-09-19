@@ -1,10 +1,14 @@
-<ion-view view-title="Home">
+<ion-view view-title="HOME">
+  <ion-header-bar
+    style="line-height: normal; font-weight: bold; font-size: 1.6em; text-align:center;"
+    class='bar-subheader bar-stable bar-energized'>
+    Equivalence Based Instruction </ion-header-bar>
   <ion-content class="padding home-page">
     <div class='home-buttons'>
-      <div class="home-start card">
+      <div class="home-start card" href="#">
           <b> START </b> &nbsp; <i class='ion-play'></i>
       </div>
-      <div class="home-tutorial card">
+      <div class="home-tutorial card" ng-click="openTutorial()">
           <b> TUTORIAL </b> &nbsp; <i class='ion-help-circled'></i>
       </div>
     </div>
