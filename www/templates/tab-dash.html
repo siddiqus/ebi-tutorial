@@ -4,12 +4,19 @@
     class='bar-subheader bar-stable bar-energized'>
     Equivalence Based Instruction </ion-header-bar>
   <ion-content class="padding home-page">
+    <br></br>
+    <br></br>
     <div class='home-buttons'>
-      <div class="home-start card" href="#">
-          <b> START </b> &nbsp; <i class='ion-play'></i>
+      <div>
+        <button class="animated fadeInUp button button-balanced home-button card item-remove-animate" ng-click='start()'>
+            <b> START </b> &nbsp; <i class='ion-play'></i>
+        </button>
       </div>
-      <div class="home-tutorial card" ng-click="openTutorial()">
-          <b> TUTORIAL </b> &nbsp; <i class='ion-help-circled'></i>
+      <br>
+      <div>
+        <button class="animated fadeInUp button button-calm home-button card" ng-click="openTutorial()">
+            <b> TUTORIAL </b> &nbsp; <i class='ion-help-circled'></i>
+        </button>
       </div>
     </div>
   </ion-content>

@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $ionicModal) {
+.controller('DashCtrl', function($scope, $location, $ionicModal) {
 
   $ionicModal.fromTemplateUrl('templates/tutorial-modal.html', {
     scope: $scope,
@@ -16,6 +16,11 @@ angular.module('starter.controllers', [])
   $scope.closeTutorial = function() {
     $scope.tutorialModal.hide();
   };
+
+  $scope.start = function(){
+    // window.location = "#/tab/play";
+    $location.path('tab.play')
+  }
 
 })
 
@@ -36,6 +41,9 @@ angular.module('starter.controllers', [])
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
+})
+
+.controller('playCtrl', function($scope, $stateParams) {
 })
 
 .controller('AccountCtrl', function($scope) {
