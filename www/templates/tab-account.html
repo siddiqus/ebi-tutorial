@@ -3,20 +3,29 @@
     <!-- <ion-nav-back-button>
     </ion-nav-back-button> -->
   </ion-nav-bar>
+<!-- class="padding" style="font-size: 1.4em; width: 100%; text-align:center" -->
+  <!-- <ion-header-bar > Categories </ion-header-bar> -->
 
-  <ion-content>
-    <div style="padding: 1em; font-size: 1.4em; width: 100%; text-align:center"> Categories </div>
+  <!-- <ion-header-bar style="height: 2.5em; font-size: 1.3em; text-align:center; padding:0.8em">
+    Categories
+  </ion-header-bar> -->
+
+  <ion-header-bar
+    style="height: 2.5em;font-size: 1.6em; text-align:center; padding:0.8em"
+    class='bar-subheader'>
+    Categories </ion-header-bar>
+
+  <ion-content class='padding'>
+
     <ion-list>
-      <ion-item class='animated fadeInUp'>
-        <label class="item item-radio">
-          <input type="radio" name="group">
-          <div class="item-content">
-            NEUROANATOMY
-          </div>
-          <i class="radio-icon ion-checkmark"></i>
-        </label>
+      <ion-item ng-repeat="category in categories" class='animated fadeInUp card padding' ng-click="chooseCategory(category.id)">
+        <!-- <ion-radio ng-model="chosenCategory" ng-class="setRadioClass(category.id)">{{category.name}}</ion-radio> -->
+        <div class='row'>
+          <div class='col col-80' style='font-size:1.2em;'> {{category.name}} </div>
+          <div class='col col-20' style='text-align:right;font-size:1.6em;'><i ng-class="setRadioClass({{category.id}})"></i></div>
+        </div>
       </ion-item>
-      <ion-item  class='animated fadeInUp'>
+      <!-- <ion-item  class='animated fadeInUp'>
         <label class="item item-radio">
           <input type="radio" name="group">
           <div class="item-content">
@@ -33,7 +42,7 @@
           </div>
           <i class="radio-icon ion-checkmark"></i>
         </label>
-      </ion-item>
+      </ion-item> -->
     </ion-list>
   </ion-content>
 </ion-view>
