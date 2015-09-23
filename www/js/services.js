@@ -16,16 +16,31 @@ angular.module('starter.services', [])
 
 
 .factory('Questions', function(){
+  var rounds = [
+    {a: 'img/B1.bmp', b: 'img/B2.bmp', c: 'img/B3.bmp', d: 'img/B4.bmp' },
+    {a: 'img/A1.bmp', b: 'img/A2.bmp', c: 'img/A3.bmp', d: 'img/A4.bmp' }
+  ];
   var questions = [
-    {id: 0, q: 'img/A1.bmp', a: 'img/B1.bmp', b: 'img/B2.bmp', c: 'img/B3.bmp', d: 'img/B4.bmp', ans: 'a'},
-    {id: 1, q: 'img/A2.bmp', a: 'img/B1.bmp', b: 'img/B2.bmp', c: 'img/B3.bmp', d: 'img/B4.bmp', ans: 'b'},
-    {id: 2, q: 'img/A3.bmp', a: 'img/B1.bmp', b: 'img/B2.bmp', c: 'img/B3.bmp', d: 'img/B4.bmp', ans: 'c'},
-    {id: 3, q: 'img/A4.bmp', a: 'img/B1.bmp', b: 'img/B2.bmp', c: 'img/B3.bmp', d: 'img/B4.bmp', ans: 'd'}
+    {id: 0, round: 0, q: 'img/A1.bmp', opts: rounds[0] , ans: 'a'},
+    {id: 1, round: 0, q: 'img/A2.bmp', opts: rounds[0], ans: 'b'},
+    {id: 2, round: 0, q: 'img/A3.bmp', opts: rounds[0], ans: 'c'},
+    {id: 3, round: 0, q: 'img/A4.bmp', opts: rounds[0], ans: 'd'},
+    {id: 4, round: 1, q: 'img/B1.bmp', opts: rounds[1], ans: 'a'},
+    {id: 5, round: 1, q: 'img/B2.bmp', opts: rounds[1], ans: 'b'},
+    {id: 6, round: 1, q: 'img/B3.bmp', opts: rounds[1], ans: 'c'},
+    {id: 7, round: 1, q: 'img/B4.bmp', opts: rounds[1], ans: 'd'}
+
   ];
 
   return {
-    all: function(){
-      return questions;
+    all: function(round){
+      var arr = [];
+      for(var i=0; i<questions.length;i++){
+        if(round === questions[i].round){
+          arr.push(questions[i]);
+        }
+      };
+      return arr;
     }
   };
 })

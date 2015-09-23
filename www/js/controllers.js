@@ -53,12 +53,15 @@ angular.module('starter.controllers', [])
 
 .controller('PlayCtrl', function($scope, $stateParams, $location, $ionicPopup, $ionicSlideBoxDelegate, Questions) {
 
-  $scope.round = 1;
-  $scope.questions = Questions.all();
+  $scope.round = 0;
+  $scope.roundDisplay=function(){
+    return $scope.round + 1;
+  }
+  $scope.questions = Questions.all($scope.round);
   $ionicSlideBoxDelegate.enableSlide(0);
 
   $scope.start = function(){
-    $ionicSlideBoxDelegate.slide($scope.random());
+    $ionicSlideBoxDelegate.slide($scope.randomNumber());
   }
 
   $scope.backToHome = function() {
@@ -75,29 +78,34 @@ angular.module('starter.controllers', [])
     });
   };
 
-  $scope.correctAnswers = 0;
+  $scope.correctAnswers = 10;
+
+  $scope.nextRound = function(){
+    var alertPopup = $ionicPopup.alert({
+      template: "<center><h3>Great! Tap OK to move to the next round.</h3></center>"
+    });
+    alertPopup.then(function(res) {
+      $scope.correctAnswers = 0;
+      $scope.round = $scope.round + 1;
+      $scope.questions = Questions.all($scope.round);
+      // $ionicSlideBoxDelegate.update();
+      $ionicSlideBoxDelegate.slide($scope.randomNumber());
+    });
+  }
 
   $scope.pickAnswer = function(question, ans){
     if(question.ans === ans){
+      $scope.correctAnswers = $scope.correctAnswers + 1;
+
       if($scope.correctAnswers == 12){
-        var alertPopup = $ionicPopup.alert({
-          // title: 'Don\'t eat that!',
-          template: "<center><h3>Great! Tap OK to move to the next round.</h3></center>"
-        });
-        alertPopup.then(function(res) {
-          $scope.correctAnswers = 0;
-          $scope.round = $scope.round + 1;
-          $ionicSlideBoxDelegate.update();
-          $ionicSlideBoxDelegate.slide($scope.random());
-        });
+        $scope.nextRound();
       } else {
         var alertPopup = $ionicPopup.alert({
           // title: 'Don\'t eat that!',
           template: "<center><h3><font color='blue'>CORRECT!</font></h3></center>"
         });
-        alertPopup.then(function(res) {
-          $scope.correctAnswers = $scope.correctAnswers + 1;
-          $ionicSlideBoxDelegate.slide($scope.random());
+        alertPopup.then(function(res) {    
+          $ionicSlideBoxDelegate.slide($scope.randomNumber());
         });
       };
     } else {
@@ -112,7 +120,7 @@ angular.module('starter.controllers', [])
     }
   };
 
-  $scope.random = function(){
+  $scope.randomNumber = function(){
     return Math.floor((Math.random() * $scope.questions.length)+1);
   }
 

@@ -1,4 +1,4 @@
-<ion-view view-title="Round {{round}}" class="animated fadeIn">
+<ion-view view-title="Round {{roundDisplay()}}" class="animated fadeIn">
   <ion-nav-bar class="bar-stable bar-balanced" align-title="center">
     <!-- <ion-nav-back-button>
     </ion-nav-back-button> -->
@@ -30,16 +30,16 @@
         <div ng-click="start()" class='home-button button button-balanced'> BEGIN </div>
       </ion-slide>
       <ion-slide ng-repeat="question in questions" class='answer-boxes animated fadeIn'>
-        <div style='margin-bottom:0.5em;box-shadow: 1px 1px 1px 1px lightgray'>
+        <div class='qst'>
           <img ng-src="{{question.q}}" height='auto' width='50%'/>
         </div>
-        <div style='display:flex;width:100%'>
-          <div style='width:50%' ng-click="pickAnswer(question, 'a')"><img ng-src="{{question.a}}" height='auto' width='90%'/></div>
-          <div style='width:50%' ng-click="pickAnswer(question, 'b')"><img ng-src="{{question.b}}" height='auto' width='90%'/></div>
+        <div style='display:flex;width:100%' class='answers'>
+          <div style='width:50%' ng-click="pickAnswer(question, 'a')"><img ng-src="{{question.opts.a}}" height='auto' width='90%'/></div>
+          <div style='width:50%' ng-click="pickAnswer(question, 'b')"><img ng-src="{{question.opts.b}}" height='auto' width='90%'/></div>
         </div>
-        <div style='display:flex;width:100%'>
-          <div style='width:50%' ng-click="pickAnswer(question, 'c')"><img ng-src="{{question.c}}" height='auto' width='90%'/></div>
-          <div style='width:50%' ng-click="pickAnswer(question, 'd')"><img ng-src="{{question.d}}" height='auto' width='90%'/></div>
+        <div style='display:flex;width:100%' class='answers'>
+          <div style='width:50%' ng-click="pickAnswer(question, 'c')"><img ng-src="{{question.opts.c}}" height='auto' width='90%'/></div>
+          <div style='width:50%' ng-click="pickAnswer(question, 'd')"><img ng-src="{{question.opts.d}}" height='auto' width='90%'/></div>
         </div>
       </ion-slide>
     </ion-slide-box>
