@@ -27,7 +27,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.start = function(){
-    $location.path('play')
+    $location.path('play');
   }
 
 })
@@ -54,6 +54,7 @@ angular.module('starter.controllers', [])
 .controller('PlayCtrl', function($scope, $stateParams, $location, $ionicPopup, $ionicSlideBoxDelegate, Questions) {
 
   $scope.questions = Questions.all();
+  $ionicSlideBoxDelegate.enableSlide(0);
 
   $scope.backToHome = function() {
     var confirmPopup = $ionicPopup.confirm({
@@ -62,13 +63,36 @@ angular.module('starter.controllers', [])
     });
     confirmPopup.then(function(res) {
       if(res) {
+        $scope.correctAnswers = 0;
+        $ionicSlideBoxDelegate.slide(0,0);
         $location.path('tab.dash');
-        $ionicSlideBoxDelegate.slide(0);
       }
     });
   };
 
   $scope.correctAnswers = 0;
+
+  $scope.pickAnswer = function(question, ans){
+    if(question.ans === ans){
+      var alertPopup = $ionicPopup.alert({
+        // title: 'Don\'t eat that!',
+        template: "<center><h3><font color='blue'>CORRECT!</font></h3></center>"
+      });
+      alertPopup.then(function(res) {
+        $scope.correctAnswers = $scope.correctAnswers + 1;
+        $ionicSlideBoxDelegate.next();
+      });
+    } else {
+      var alertPopup = $ionicPopup.alert({
+        // title: 'Don\'t eat that!',
+        template: "<center><h3><font color='red'>INCORRECT!</font></h3></center>"
+      });
+      alertPopup.then(function(res) {
+        $scope.correctAnswers = 0;
+        $ionicSlideBoxDelegate.slide(0);
+      });
+    }
+  }
 
 })
 

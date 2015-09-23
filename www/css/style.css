@@ -38,3 +38,7 @@ ion-content, .light-gray-background {
   align-items: center;
   text-align: center;
 }
+
+.answer-boxes .activated img {
+  opacity: 0.3;
+}
