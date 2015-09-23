@@ -1,4 +1,4 @@
-<ion-view view-title="PLAY" class="animated fadeIn">
+<ion-view view-title="Round {{round}}" class="animated fadeIn">
   <ion-nav-bar class="bar-stable bar-balanced" align-title="center">
     <!-- <ion-nav-back-button>
     </ion-nav-back-button> -->
@@ -18,9 +18,18 @@
     style="line-height: normal; font-weight: bold; font-size: 1.6em; text-align:center;"
     class='bar-subheader bar-stable bar-balanced'>
     PLAY </ion-header-bar> -->
-  <ion-content class="home-page light-gray-background" scroll='false'>
+  <ion-content class="home-page light-gray-background" direction='y'>
     <ion-slide-box disable-scroll="true" show-pager='false'>
-      <ion-slide ng-repeat="question in questions" class='answer-boxes'>
+      <ion-slide>
+        <div class='card padding' style='text-align:left'>
+          To complete one round, you must choose correctly 12 times in a row.
+        </div>
+        <div class='card padding' style='text-align:left'>
+          If you choose an incorrect answer before getting 12 correct, you will be taken back to the start.
+        </div>
+        <div ng-click="start()" class='home-button button button-balanced'> BEGIN </div>
+      </ion-slide>
+      <ion-slide ng-repeat="question in questions" class='answer-boxes animated fadeIn'>
         <div style='margin-bottom:0.5em;box-shadow: 1px 1px 1px 1px lightgray'>
           <img ng-src="{{question.q}}" height='auto' width='50%'/>
         </div>
@@ -33,6 +42,6 @@
           <div style='width:50%' ng-click="pickAnswer(question, 'd')"><img ng-src="{{question.d}}" height='auto' width='90%'/></div>
         </div>
       </ion-slide>
-    <ion-slide-box>
+    </ion-slide-box>
   </ion-content>
 </ion-view>

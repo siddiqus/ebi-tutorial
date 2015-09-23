@@ -53,8 +53,13 @@ angular.module('starter.controllers', [])
 
 .controller('PlayCtrl', function($scope, $stateParams, $location, $ionicPopup, $ionicSlideBoxDelegate, Questions) {
 
+  $scope.round = 1;
   $scope.questions = Questions.all();
   $ionicSlideBoxDelegate.enableSlide(0);
+
+  $scope.start = function(){
+    $ionicSlideBoxDelegate.slide($scope.random());
+  }
 
   $scope.backToHome = function() {
     var confirmPopup = $ionicPopup.confirm({
@@ -64,7 +69,7 @@ angular.module('starter.controllers', [])
     confirmPopup.then(function(res) {
       if(res) {
         $scope.correctAnswers = 0;
-        $ionicSlideBoxDelegate.slide(0,0);
+        $ionicSlideBoxDelegate.slide(0,10);
         $location.path('tab.dash');
       }
     });
@@ -74,14 +79,27 @@ angular.module('starter.controllers', [])
 
   $scope.pickAnswer = function(question, ans){
     if(question.ans === ans){
-      var alertPopup = $ionicPopup.alert({
-        // title: 'Don\'t eat that!',
-        template: "<center><h3><font color='blue'>CORRECT!</font></h3></center>"
-      });
-      alertPopup.then(function(res) {
-        $scope.correctAnswers = $scope.correctAnswers + 1;
-        $ionicSlideBoxDelegate.next();
-      });
+      if($scope.correctAnswers == 12){
+        var alertPopup = $ionicPopup.alert({
+          // title: 'Don\'t eat that!',
+          template: "<center><h3>Great! Tap OK to move to the next round.</h3></center>"
+        });
+        alertPopup.then(function(res) {
+          $scope.correctAnswers = 0;
+          $scope.round = $scope.round + 1;
+          $ionicSlideBoxDelegate.update();
+          $ionicSlideBoxDelegate.slide($scope.random());
+        });
+      } else {
+        var alertPopup = $ionicPopup.alert({
+          // title: 'Don\'t eat that!',
+          template: "<center><h3><font color='blue'>CORRECT!</font></h3></center>"
+        });
+        alertPopup.then(function(res) {
+          $scope.correctAnswers = $scope.correctAnswers + 1;
+          $ionicSlideBoxDelegate.slide($scope.random());
+        });
+      };
     } else {
       var alertPopup = $ionicPopup.alert({
         // title: 'Don\'t eat that!',
@@ -92,6 +110,10 @@ angular.module('starter.controllers', [])
         $ionicSlideBoxDelegate.slide(0);
       });
     }
+  };
+
+  $scope.random = function(){
+    return Math.floor((Math.random() * $scope.questions.length)+1);
   }
 
 })
