@@ -1,4 +1,12 @@
 /* Empty. Add your own CSS if you like */
+.gray-background {
+  background-color: rgba(236, 232, 232, 0.5) !important;
+}
+
+ion-content, .light-gray-background {
+  background-color: rgba(236, 232, 232, 0.2) !important;
+}
+
 .home-button {
   padding: 0.5em;
   color: white !important;
@@ -8,7 +16,7 @@
 
 .home-buttons {
   color: white !important;
-  font-size: 1.5em;
+  font-size: 1.2em;
   width: 100%;
 }
 
