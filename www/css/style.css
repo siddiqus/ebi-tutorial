@@ -1,4 +1,14 @@
 /* Empty. Add your own CSS if you like */
+html {
+  /*font-family: 'Roboto-Medium', sans-serif !important;*/
+  font-family: 'Roboto', sans-serif !important;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../lib/fonts/Roboto-Regular.ttf')  format('truetype');
+}
+
 .gray-background {
   background-color: rgba(236, 232, 232, 0.5) !important;
 }
@@ -11,7 +21,8 @@ ion-content, .light-gray-background {
   padding: 0.5em;
   color: white !important;
   width: 100%;
-  font-size: 1.2em;
+  font-size: 1.3em;
+  /*font-family: 'Roboto', sans-serif !important;*/
 }
 
 .home-buttons {

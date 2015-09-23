@@ -51,10 +51,33 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('PlayCtrl', function($scope, $stateParams, $location) {
+.controller('PlayCtrl', function($scope, $stateParams, $location, $ionicPopup) {
   $scope.backToHome = function() {
-    $location.path('tab.dash');
-  }
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Back to Home',
+      template: "<center> Are you sure you want to exit the program? </center>"
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        $location.path('tab.dash');
+      }
+    });
+  };
+
+  $scope.confirmExit = function() {
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Exit Program',
+     template: 'Are you sure you want to exit the program?'
+   });
+   confirmPopup.then(function(res) {
+     if(res) {
+       console.log('You are sure');
+     } else {
+       console.log('You are not sure');
+     }
+   });
+ };
+
 })
 
 .controller('AccountCtrl', function($scope, $stateParams, $location, Categories) {
