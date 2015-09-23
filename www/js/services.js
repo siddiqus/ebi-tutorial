@@ -14,6 +14,22 @@ angular.module('starter.services', [])
     };
 })
 
+
+.factory('Questions', function(){
+  var questions = [
+    {id: 0, q: 'img/A1.bmp', a: 'img/B1.bmp', b: 'img/B2.bmp', c: 'img/B3.bmp', d: 'img/B4.bmp', ans: 'a'},
+    {id: 1, q: 'img/A2.bmp', a: 'img/B1.bmp', b: 'img/B2.bmp', c: 'img/B3.bmp', d: 'img/B4.bmp', ans: 'b'},
+    {id: 2, q: 'img/A3.bmp', a: 'img/B1.bmp', b: 'img/B2.bmp', c: 'img/B3.bmp', d: 'img/B4.bmp', ans: 'c'},
+    {id: 3, q: 'img/A4.bmp', a: 'img/B1.bmp', b: 'img/B2.bmp', c: 'img/B3.bmp', d: 'img/B4.bmp', ans: 'd'}
+  ];
+
+  return {
+    all: function(){
+      return questions;
+    }
+  };
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 

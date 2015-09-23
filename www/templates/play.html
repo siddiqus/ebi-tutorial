@@ -2,21 +2,37 @@
   <ion-nav-bar class="bar-stable bar-balanced" align-title="center">
     <!-- <ion-nav-back-button>
     </ion-nav-back-button> -->
-
-
   </ion-nav-bar>
-
 
   <ion-nav-buttons side="right">
     <button class="button" ng-click="backToHome()">
         <b>Exit</b>
     </button>
   </ion-nav-buttons>
+
+  <ion-header-bar
+    style="font-size: 1.5em; text-align:center; padding-top: 0.5em"
+    class='bar-subheader gray-background'>
+    Correct: {{correctAnswers}} </ion-header-bar>
   <!-- <ion-header-bar
     style="line-height: normal; font-weight: bold; font-size: 1.6em; text-align:center;"
     class='bar-subheader bar-stable bar-balanced'>
     PLAY </ion-header-bar> -->
-  <ion-content class="padding home-page light-gray-background">
-
+  <ion-content class="home-page light-gray-background" scroll='false'>
+    <ion-slide-box does-continue="true" on-slide-changed="slideHasChanged($index)" show-pager='false'>
+      <ion-slide ng-repeat="question in questions">
+        <div style='margin-bottom:0.5em;box-shadow: 1px 1px 1px 1px lightgray'>
+          <img ng-src="{{question.q}}" height='auto' width='50%'/>
+        </div>
+        <div style='display:flex;width:100%'>
+          <div style='width:50%' ng-click="pickAnswer('a')"><img ng-src="{{question.a}}" height='auto' width='90%'/></div>
+          <div style='width:50%' ng-click="pickAnswer('b')"><img ng-src="{{question.b}}" height='auto' width='90%'/></div>
+        </div>
+        <div style='display:flex;width:100%'>
+          <div style='width:50%' ng-click="pickAnswer('c')"><img ng-src="{{question.c}}" height='auto' width='90%'/></div>
+          <div style='width:50%' ng-click="pickAnswer('d')"><img ng-src="{{question.d}}" height='auto' width='90%'/></div>
+        </div>
+      </ion-slide>
+    <ion-slide-box>
   </ion-content>
 </ion-view>
