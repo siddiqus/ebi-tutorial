@@ -9,6 +9,15 @@ angular.module('starter.controllers', [])
     $scope.tutorialModal = modal;
   });
 
+  $scope.closeButton = [
+    {
+      type: 'button-positive',
+      content: '<i class="icon ion-navicon"></i>',
+      tap: function(e) {
+        $scope.tutorialModal.hide();
+      }
+    }
+  ]
   $scope.openTutorial = function() {
     $scope.activeSlide = 1;
     $scope.tutorialModal.show();
@@ -18,8 +27,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.start = function(){
-    // window.location = "#/tab/play";
-    $location.path('tab.play')
+    $location.path('play')
   }
 
 })
@@ -43,7 +51,10 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('playCtrl', function($scope, $stateParams) {
+.controller('PlayCtrl', function($scope, $stateParams, $location) {
+  $scope.backToHome = function() {
+    $location.path('tab.dash');
+  }
 })
 
 .controller('AccountCtrl', function($scope) {

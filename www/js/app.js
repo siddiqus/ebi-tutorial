@@ -23,13 +23,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  $ionicConfigProvider.tabs.position('bottom');
+  $ionicConfigProvider.views.transition('ios');
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
+
+  .state('play', {
+    url: '/play',
+    templateUrl: 'templates/play.html',
+    controller: 'PlayCtrl'
+  })
+
 
   // setup an abstract state for the tabs directive
   .state('tab', {
@@ -50,15 +58,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.play', {
-      url: '/play',
-      views: {
-        'play':{
-          templateUrl: 'templates/play.html',
-          controller: 'playCtrl'
-        }
-      }
-  })
 
   .state('tab.chats', {
       url: '/chats',
