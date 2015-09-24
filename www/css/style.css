@@ -1,13 +1,4 @@
 /* Empty. Add your own CSS if you like */
-html {
-  /*font-family: 'Roboto-Medium', sans-serif !important;*/
-  font-family: 'Roboto', sans-serif !important;
-}
-
-@font-face {
-  font-family: 'Roboto';
-  src: url('../lib/fonts/Roboto-Regular.ttf')  format('truetype');
-}
 
 .gray-background {
   background-color: rgba(236, 232, 232, 0.5) !important;
@@ -15,6 +6,10 @@ html {
 
 ion-content, .light-gray-background {
   background-color: rgba(236, 232, 232, 0.2) !important;
+}
+
+.bar-subheader {
+  background-color: #F2EFEF;
 }
 
 .home-button {

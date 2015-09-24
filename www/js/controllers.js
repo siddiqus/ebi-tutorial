@@ -78,7 +78,7 @@ angular.module('starter.controllers', [])
     });
   };
 
-  $scope.correctAnswers = 10;
+  $scope.correctAnswers = 11;
 
   $scope.nextRound = function(){
     var alertPopup = $ionicPopup.alert({
@@ -89,7 +89,7 @@ angular.module('starter.controllers', [])
       $scope.round = $scope.round + 1;
       $scope.questions = Questions.all($scope.round);
       // $ionicSlideBoxDelegate.update();
-      $ionicSlideBoxDelegate.slide($scope.randomNumber());
+      $ionicSlideBoxDelegate.slide(1);
     });
   }
 
@@ -104,7 +104,7 @@ angular.module('starter.controllers', [])
           // title: 'Don\'t eat that!',
           template: "<center><h3><font color='blue'>CORRECT!</font></h3></center>"
         });
-        alertPopup.then(function(res) {    
+        alertPopup.then(function(res) {
           $ionicSlideBoxDelegate.slide($scope.randomNumber());
         });
       };
