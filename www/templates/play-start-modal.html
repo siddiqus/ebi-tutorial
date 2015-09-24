@@ -5,15 +5,19 @@
      <button class="button button-primary" ng-click="closeStartInfo()"><b>Cancel</b></button>
    </div>
  </ion-header-bar>
- <ion-content>
-   <div class='animated fadeIn' ng-if='!started'>
-     <div class='card padding' style='text-align:left'>
-       To complete one round, you must choose correctly 12 times in a row.
-     </div>
-     <div class='card padding' style='text-align:left'>
-       If you choose an incorrect answer before getting 12 correct, you will be taken back to the start.
-     </div>
-     <div ng-click="start()" class='home-button button button-balanced'><b>BEGIN</b></div>
+ <ion-header-bar
+   style="font-size: 1.5em; height: 3em; text-align:center; padding-top:1em"
+   class='bar-subheader bar-stable'>
+   {{category.name}}
+ </ion-header-bar>
+ <br></br>
+ <ion-content class='padding'>
+   <div class='card padding'>
+     To complete one round, you must choose correctly 12 times in a row.
    </div>
+   <div class='card padding'>
+     If you choose an incorrect answer before getting 12 correct, you will be taken back to the start.
+   </div>
+   <center> <button ng-click="start()" class='button button-balanced'><b>START</b></button></center>
  </ion-content>
 </ion-modal-view>

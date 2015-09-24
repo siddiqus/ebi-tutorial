@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $location, $ionicModal) {
+.controller('DashCtrl', function($scope, $location, $rootScope, $ionicModal, Categories) {
 
   $ionicModal.fromTemplateUrl('templates/tutorial-modal.html', {
     scope: $scope,
@@ -26,6 +26,7 @@ angular.module('starter.controllers', [])
 
 
   $scope.openStartInfo = function() {
+    $scope.category = Categories.all()[$rootScope.chosenCategory];
     $scope.startInfoModal.show();
   };
   $scope.closeStartInfo = function() {
@@ -148,17 +149,16 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('AccountCtrl', function($scope, $stateParams, $location, Categories) {
-  $scope.chosenCategory = 0;
+.controller('AccountCtrl', function($scope, $stateParams, $rootScope, $location, Categories) {
   $scope.categories = Categories.all();
   $scope.setRadioClass = function(id){
-    if($scope.chosenCategory == id){
+    if($rootScope.chosenCategory == id){
       return 'ion-android-radio-button-on';
     } else {
       return 'ion-android-radio-button-off';
     }
   };
   $scope.chooseCategory = function(id) {
-    $scope.chosenCategory = id;
+    $rootScope.chosenCategory = id;
   }
 });
