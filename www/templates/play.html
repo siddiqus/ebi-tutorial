@@ -20,18 +20,20 @@
     PLAY </ion-header-bar> -->
   <ion-content class="home-page light-gray-background" direction='y'>
     <ion-slide-box disable-scroll="true" show-pager='false'>
-      <ion-slide ng-repeat="question in questions" class='answer-boxes animated-slow fadeIn'>
+      <ion-slide ng-repeat="question in questions" class='answer-boxes animated fadeIn'>
         <div class='qst'>
           <img ng-src="{{question.q}}" height='auto' width='150em'/>
         </div>
         <div class='box-shadow'></div>
-        <div class='answers flex-row'>
-          <div class='flex-col' ng-click="pickAnswer(question, 'a')"><img ng-src="{{question.opts.a}}" height='auto' width='150em'/></div>
-          <div class='flex-col' ng-click="pickAnswer(question, 'b')"><img ng-src="{{question.opts.b}}" height='auto' width='150em'/></div>
-        </div>
-        <div class='answers flex-row'>
-          <div class='flex-col' ng-click="pickAnswer(question, 'c')"><img ng-src="{{question.opts.c}}" height='auto' width='150em'/></div>
-          <div class='flex-col' ng-click="pickAnswer(question, 'd')"><img ng-src="{{question.opts.d}}" height='auto' width='150em'/></div>
+        <div class='answer-boxes'>
+          <div class='answers flex-row'>
+            <div class='flex-col' ng-click="pickAnswer(question, randomAnswers[0])"><img ng-src="{{question.opts[randomAnswers[0]]}}" height='auto' width='150em'/></div>
+            <div class='flex-col' ng-click="pickAnswer(question, randomAnswers[1])"><img ng-src="{{question.opts[randomAnswers[1]]}}" height='auto' width='150em'/></div>
+          </div>
+          <div class='answers flex-row'>
+            <div class='flex-col' ng-click="pickAnswer(question, randomAnswers[2])"><img ng-src="{{question.opts[randomAnswers[2]]}}" height='auto' width='150em'/></div>
+            <div class='flex-col' ng-click="pickAnswer(question, randomAnswers[3])"><img ng-src="{{question.opts[randomAnswers[3]]}}" height='auto' width='150em'/></div>
+          </div>
         </div>
       </ion-slide>
     </ion-slide-box>

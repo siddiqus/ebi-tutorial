@@ -85,7 +85,7 @@ angular.module('starter.controllers', [])
     });
   };
 
-  $scope.correctAnswers = 11;
+  $scope.correctAnswers = 0;
 
   $scope.nextRound = function(){
     $scope.correctAnswers = 0;
@@ -101,6 +101,8 @@ angular.module('starter.controllers', [])
     // });
   }
 
+  $scope.randomAnswers = ['a','b','c','d'];
+
   $scope.pickAnswer = function(question, ans){
     if(question.ans === ans){
       $scope.correctAnswers = $scope.correctAnswers + 1;
@@ -113,6 +115,7 @@ angular.module('starter.controllers', [])
           template: "<center><h3><font color='blue'>CORRECT!</font></h3></center>"
         });
         alertPopup.then(function(res) {
+          $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
           $ionicSlideBoxDelegate.slide($scope.randomNumber());
         });
       };
@@ -123,6 +126,7 @@ angular.module('starter.controllers', [])
       });
       alertPopup.then(function(res) {
         $scope.correctAnswers = 0;
+        $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
         $ionicSlideBoxDelegate.slide(0);
       });
     }
