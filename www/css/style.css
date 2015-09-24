@@ -1,3 +1,21 @@
+/*SLIDE ANIMATION*/
+.slide-in-right {
+  -webkit-transform: translateX(100%);
+    transform: translateX(100%); }
+
+.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
+
+.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+  -webkit-transform: translateX(0);
+    transform: translateX(0); }
+
+.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms; }
+
+
 /* Empty. Add your own CSS if you like */
 
 .gray-background {
@@ -50,6 +68,9 @@ ion-content, .light-gray-background {
   opacity: 0.3;
 }
 
+.answer-boxes .qst {
+  margin-top: 0.3em;
+}
 .answer-boxes .qst img {
   box-shadow: 2px 2px 2px 0px lightgray;
 }
@@ -57,4 +78,12 @@ ion-content, .light-gray-background {
   border: 1px solid lightgray;
   border-radius: 0.2em;
   box-shadow: 2px 2px 2px 0px lightgray;
+}
+
+.box-shadow {
+  /*padding-bottom: 0.2em;*/
+  margin-top: -0.2em;
+  height: 0.2em;
+  margin-bottom: 0.5em;
+  box-shadow: 0px 2px 2px 0px lightgray;
 }

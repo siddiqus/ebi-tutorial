@@ -4,20 +4,18 @@ angular.module('starter.controllers', [])
 
   $ionicModal.fromTemplateUrl('templates/tutorial-modal.html', {
     scope: $scope,
-    animation: 'slide-in-up'
+    animation: 'slide-in-right'
   }).then(function(modal) {
     $scope.tutorialModal = modal;
   });
 
-  $scope.closeButton = [
-    {
-      type: 'button-positive',
-      content: '<i class="icon ion-navicon"></i>',
-      tap: function(e) {
-        $scope.tutorialModal.hide();
-      }
-    }
-  ]
+  $ionicModal.fromTemplateUrl('templates/play-start-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-right'
+  }).then(function(modal) {
+    $scope.startInfoModal = modal;
+  });
+
   $scope.openTutorial = function() {
     $scope.activeSlide = 1;
     $scope.tutorialModal.show();
@@ -26,10 +24,18 @@ angular.module('starter.controllers', [])
     $scope.tutorialModal.hide();
   };
 
+
+  $scope.openStartInfo = function() {
+    $scope.startInfoModal.show();
+  };
+  $scope.closeStartInfo = function() {
+    $scope.startInfoModal.hide();
+  };
+
   $scope.start = function(){
+    $scope.closeStartInfo();
     $location.path('play');
   }
-
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
@@ -60,9 +66,9 @@ angular.module('starter.controllers', [])
   $scope.questions = Questions.all($scope.round);
   $ionicSlideBoxDelegate.enableSlide(0);
 
-  $scope.start = function(){
-    $ionicSlideBoxDelegate.slide($scope.randomNumber());
-  }
+  // $scope.start = function(){
+  //   $ionicSlideBoxDelegate.slide($scope.randomNumber());
+  // }
 
   $scope.backToHome = function() {
     var confirmPopup = $ionicPopup.confirm({
@@ -72,6 +78,7 @@ angular.module('starter.controllers', [])
     confirmPopup.then(function(res) {
       if(res) {
         $scope.correctAnswers = 0;
+        $scope.round = 0;
         $ionicSlideBoxDelegate.slide(0,10);
         $location.path('tab.dash');
       }
@@ -81,16 +88,17 @@ angular.module('starter.controllers', [])
   $scope.correctAnswers = 11;
 
   $scope.nextRound = function(){
+    $scope.correctAnswers = 0;
+    $scope.round = $scope.round + 1;
+    $scope.questions = Questions.all($scope.round);
+    $ionicSlideBoxDelegate.update();
+
     var alertPopup = $ionicPopup.alert({
-      template: "<center><h3>Great! Tap OK to move to the next round.</h3></center>"
+      template: "<center><h3>Great! Tap OK to start the next round.</h3></center>"
     });
-    alertPopup.then(function(res) {
-      $scope.correctAnswers = 0;
-      $scope.round = $scope.round + 1;
-      $scope.questions = Questions.all($scope.round);
-      // $ionicSlideBoxDelegate.update();
-      $ionicSlideBoxDelegate.slide(1);
-    });
+    // alertPopup();
+    // .then(function(res) {
+    // });
   }
 
   $scope.pickAnswer = function(question, ans){
@@ -122,6 +130,16 @@ angular.module('starter.controllers', [])
 
   $scope.randomNumber = function(){
     return Math.floor((Math.random() * $scope.questions.length)+1);
+  }
+
+  $scope.shuffleArray = function(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
   }
 
 })

@@ -20,28 +20,18 @@
     PLAY </ion-header-bar> -->
   <ion-content class="home-page light-gray-background" direction='y'>
     <ion-slide-box disable-scroll="true" show-pager='false'>
-      <ion-slide>
-        <div class='card padding' style='text-align:left'>
-          To complete one round, you must choose correctly 12 times in a row.
+      <ion-slide ng-repeat="question in questions" class='answer-boxes animated-slow fadeIn'>
+        <div class='qst'>
+          <img ng-src="{{question.q}}" height='auto' width='150em'/>
         </div>
-        <div class='card padding' style='text-align:left'>
-          If you choose an incorrect answer before getting 12 correct, you will be taken back to the start.
+        <div class='box-shadow'></div>
+        <div class='answers flex-row'>
+          <div class='flex-col' ng-click="pickAnswer(question, 'a')"><img ng-src="{{question.opts.a}}" height='auto' width='150em'/></div>
+          <div class='flex-col' ng-click="pickAnswer(question, 'b')"><img ng-src="{{question.opts.b}}" height='auto' width='150em'/></div>
         </div>
-        <div ng-click="start()" class='home-button button button-balanced'> BEGIN </div>
-      </ion-slide>
-      <ion-slide ng-repeat="question in questions" class='answer-boxes animated fadeIn'>
-        <div>
-          <div class='qst'>
-            <img ng-src="{{question.q}}" height='auto' width='50%'/>
-          </div>
-          <div class='answers flex-row'>
-            <div class='flex-col' ng-click="pickAnswer(question, 'a')"><img ng-src="{{question.opts.a}}" height='auto' width='90%'/></div>
-            <div class='flex-col' ng-click="pickAnswer(question, 'b')"><img ng-src="{{question.opts.b}}" height='auto' width='90%'/></div>
-          </div>
-          <div class='answers flex-row'>
-            <div class='flex-col' ng-click="pickAnswer(question, 'c')"><img ng-src="{{question.opts.c}}" height='auto' width='90%'/></div>
-            <div class='flex-col' ng-click="pickAnswer(question, 'd')"><img ng-src="{{question.opts.d}}" height='auto' width='90%'/></div>
-          </div>
+        <div class='answers flex-row'>
+          <div class='flex-col' ng-click="pickAnswer(question, 'c')"><img ng-src="{{question.opts.c}}" height='auto' width='150em'/></div>
+          <div class='flex-col' ng-click="pickAnswer(question, 'd')"><img ng-src="{{question.opts.d}}" height='auto' width='150em'/></div>
         </div>
       </ion-slide>
     </ion-slide-box>

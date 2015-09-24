@@ -1,0 +1,19 @@
+<ion-modal-view class='modal'>
+ <ion-header-bar class="bar-balanced" align-title='center' right-buttons='closeButton'>
+   <h1 class="title"> PLAY </h1>
+   <div class='buttons'>
+     <button class="button button-primary" ng-click="closeStartInfo()"><b>Cancel</b></button>
+   </div>
+ </ion-header-bar>
+ <ion-content>
+   <div class='animated fadeIn' ng-if='!started'>
+     <div class='card padding' style='text-align:left'>
+       To complete one round, you must choose correctly 12 times in a row.
+     </div>
+     <div class='card padding' style='text-align:left'>
+       If you choose an incorrect answer before getting 12 correct, you will be taken back to the start.
+     </div>
+     <div ng-click="start()" class='home-button button button-balanced'><b>BEGIN</b></div>
+   </div>
+ </ion-content>
+</ion-modal-view>
