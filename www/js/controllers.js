@@ -100,14 +100,18 @@ angular.module('starter.controllers', [])
     // alertPopup();
     // .then(function(res) {
     // });
-  }
+  };
 
-  $scope.randomAnswers = ['a','b','c','d'];
+  // $scope.randomAnswers = ['a','b','c','d'];
 
   $scope.pickAnswer = function(question, ans){
     if(question.ans === ans){
       $scope.correctAnswers = $scope.correctAnswers + 1;
-
+      if(question.answered){
+        question.answered = question.answered + 1;
+      } else {
+        question.answered = 1;
+      }
       if($scope.correctAnswers == 12){
         $scope.nextRound();
       } else {
@@ -115,9 +119,12 @@ angular.module('starter.controllers', [])
           // title: 'Don\'t eat that!',
           template: "<center><h3><font color='blue'>CORRECT!</font></h3></center>"
         });
+        for(var i=0;i<$scope.questions.length;i++){
+          $scope.questions[i].answered = null;
+        };
         alertPopup.then(function(res) {
           $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
-          $ionicSlideBoxDelegate.slide($scope.randomNumber());
+          $ionicSlideBoxDelegate.slide($scope.pickNextQuestion(question));
         });
       };
     } else {
@@ -133,9 +140,20 @@ angular.module('starter.controllers', [])
     }
   };
 
+  $scope.pickNextQuestion = function(question){
+    while(true){
+      var newQuestion = $scope.randomNumber();
+      if (($scope.questions[newQuestion].answered == 3) || ($scope.questions[newQuestion].id == question.id) ){
+        continue;
+      } else {
+        return newQuestion;
+      }
+    }
+  };
+
   $scope.randomNumber = function(){
-    return Math.floor((Math.random() * $scope.questions.length)+1);
-  }
+    return Math.floor((Math.random() * $scope.questions.length));
+  };
 
   $scope.shuffleArray = function(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -145,7 +163,10 @@ angular.module('starter.controllers', [])
         array[j] = temp;
     }
     return array;
-  }
+  };
+
+  $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
+
 
 })
 
