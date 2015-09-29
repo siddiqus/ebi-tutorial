@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('ebi.services', [])
 
 .factory('Categories', function() {
     var categories = [
