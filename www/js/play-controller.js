@@ -1,7 +1,7 @@
 angular.module('ebi.controllers')
 .controller('PlayCtrl', function($scope, $stateParams, $location, $ionicPopup, $ionicSlideBoxDelegate, Questions) {
 
-  $scope.playState = 0;
+  $scope.playState = 'train';
   $scope.round = 0;
   $scope.roundDisplay=function(){
     return $scope.round + 1;
