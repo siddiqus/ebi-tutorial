@@ -23,41 +23,41 @@ angular.module('ebi.services', [])
   ];
 
   var questions = [
-    [ // pic to name - TRAINING
+    [ // train pic to name - TRAINING - 0
       {id: 0, q: 'img/A1.bmp', opts: choices[1] , ans: 'a'},
       {id: 1, q: 'img/A2.bmp', opts: choices[1], ans: 'b'},
       {id: 2, q: 'img/A3.bmp', opts: choices[1], ans: 'c'},
       {id: 3, q: 'img/A4.bmp', opts: choices[1], ans: 'd'}
     ],
-    [ // pic to function - TRAINING
+    [ // train pic to function - TRAINING - 1
       {id: 4, q: 'img/A1.bmp', opts: choices[2] , ans: 'a'},
       {id: 5, q: 'img/A2.bmp', opts: choices[2], ans: 'b'},
       {id: 6, q: 'img/A3.bmp', opts: choices[2], ans: 'c'},
       {id: 7, q: 'img/A4.bmp', opts: choices[2], ans: 'd'}
     ],
     [
-      // test name to pic
+      // test name to pic - test 0
       {id: 8, q: 'img/B1.bmp', opts: choices[0], ans: 'a'},
       {id: 9, q: 'img/B2.bmp', opts: choices[0], ans: 'b'},
       {id: 10, q: 'img/B3.bmp', opts: choices[0], ans: 'c'},
       {id: 11, q: 'img/B4.bmp', opts: choices[0], ans: 'd'}
     ],
     [
-      // test function to pic
+      // test function to pic - test 1
       {id: 12, q: 'img/C1.bmp', opts: choices[0], ans: 'a'},
       {id: 13, q: 'img/C2.bmp', opts: choices[0], ans: 'b'},
       {id: 14, q: 'img/C3.bmp', opts: choices[0], ans: 'c'},
       {id: 15, q: 'img/C4.bmp', opts: choices[0], ans: 'd'}
     ],
     [
-      // test function to name
+      // test function to name - test 2
       {id: 16, q: 'img/C1.bmp', opts: choices[1], ans: 'a'},
       {id: 17, q: 'img/C2.bmp', opts: choices[1], ans: 'b'},
       {id: 18, q: 'img/C3.bmp', opts: choices[1], ans: 'c'},
       {id: 19, q: 'img/C4.bmp', opts: choices[1], ans: 'd'}
     ],
     [
-      // test name to function
+      // test name to function - test 3
       {id: 20, q: 'img/B1.bmp', opts: choices[2], ans: 'a'},
       {id: 21, q: 'img/B2.bmp', opts: choices[2], ans: 'b'},
       {id: 22, q: 'img/B3.bmp', opts: choices[2], ans: 'c'},
@@ -69,7 +69,7 @@ angular.module('ebi.services', [])
     training: function(round){
       return questions[round];
     },
-    test: function(qst){ // qst is an array
+    testing: function(qst){ // qst is an array
       tests = []
       for(var i=0;i<qst.length;i++){
         var j = qst[i] + 2;
