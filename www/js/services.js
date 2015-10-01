@@ -22,61 +22,62 @@ angular.module('ebi.services', [])
     {a: 'img/C1.bmp', b: 'img/C2.bmp', c: 'img/C3.bmp', d: 'img/C4.bmp' },
   ];
 
-  var tests = [
-    [
-      // test name to pic
-      {id: 0, q: 'img/B1.bmp', opts: choices[0], ans: 'a'},
-      {id: 1, q: 'img/B2.bmp', opts: choices[0], ans: 'b'},
-      {id: 2, q: 'img/B3.bmp', opts: choices[0], ans: 'c'},
-      {id: 3, q: 'img/B4.bmp', opts: choices[0], ans: 'd'}
-    ],
-      // test function to pic
-    [
-      {id: 4, q: 'img/C1.bmp', opts: choices[0], ans: 'a'},
-      {id: 5, q: 'img/C2.bmp', opts: choices[0], ans: 'b'},
-      {id: 6, q: 'img/C3.bmp', opts: choices[0], ans: 'c'},
-      {id: 7, q: 'img/C4.bmp', opts: choices[0], ans: 'd'}
-    ],
-      // test function to name
-      {id: 8, q: 'img/C1.bmp', opts: choices[1], ans: 'a'},
-      {id: 9, q: 'img/C2.bmp', opts: choices[1], ans: 'b'},
-      {id: 10, q: 'img/C3.bmp', opts: choices[1], ans: 'c'},
-      {id: 11, q: 'img/C4.bmp', opts: choices[1], ans: 'd'}
-    ],
-      // test name to function
-    [
-      {id: 12, q: 'img/B1.bmp', opts: choices[2], ans: 'a'},
-      {id: 13, q: 'img/B2.bmp', opts: choices[2], ans: 'b'},
-      {id: 14, q: 'img/B3.bmp', opts: choices[2], ans: 'c'},
-      {id: 15, q: 'img/B4.bmp', opts: choices[2], ans: 'd'}
-    ]
-  ];
-
-  var training = [
-    [ // pic to name
+  var questions = [
+    [ // pic to name - TRAINING
       {id: 0, q: 'img/A1.bmp', opts: choices[1] , ans: 'a'},
       {id: 1, q: 'img/A2.bmp', opts: choices[1], ans: 'b'},
       {id: 2, q: 'img/A3.bmp', opts: choices[1], ans: 'c'},
       {id: 3, q: 'img/A4.bmp', opts: choices[1], ans: 'd'}
     ],
-    [ // pic to function
-      {id: 0, q: 'img/A1.bmp', opts: choices[2] , ans: 'a'},
-      {id: 1, q: 'img/A2.bmp', opts: choices[2], ans: 'b'},
-      {id: 2, q: 'img/A3.bmp', opts: choices[2], ans: 'c'},
-      {id: 3, q: 'img/A4.bmp', opts: choices[2], ans: 'd'}
+    [ // pic to function - TRAINING
+      {id: 4, q: 'img/A1.bmp', opts: choices[2] , ans: 'a'},
+      {id: 5, q: 'img/A2.bmp', opts: choices[2], ans: 'b'},
+      {id: 6, q: 'img/A3.bmp', opts: choices[2], ans: 'c'},
+      {id: 7, q: 'img/A4.bmp', opts: choices[2], ans: 'd'}
+    ],
+    [
+      // test name to pic
+      {id: 8, q: 'img/B1.bmp', opts: choices[0], ans: 'a'},
+      {id: 9, q: 'img/B2.bmp', opts: choices[0], ans: 'b'},
+      {id: 10, q: 'img/B3.bmp', opts: choices[0], ans: 'c'},
+      {id: 11, q: 'img/B4.bmp', opts: choices[0], ans: 'd'}
+    ],
+    [
+      // test function to pic
+      {id: 12, q: 'img/C1.bmp', opts: choices[0], ans: 'a'},
+      {id: 13, q: 'img/C2.bmp', opts: choices[0], ans: 'b'},
+      {id: 14, q: 'img/C3.bmp', opts: choices[0], ans: 'c'},
+      {id: 15, q: 'img/C4.bmp', opts: choices[0], ans: 'd'}
+    ],
+    [
+      // test function to name
+      {id: 16, q: 'img/C1.bmp', opts: choices[1], ans: 'a'},
+      {id: 17, q: 'img/C2.bmp', opts: choices[1], ans: 'b'},
+      {id: 18, q: 'img/C3.bmp', opts: choices[1], ans: 'c'},
+      {id: 19, q: 'img/C4.bmp', opts: choices[1], ans: 'd'}
+    ],
+    [
+      // test name to function
+      {id: 20, q: 'img/B1.bmp', opts: choices[2], ans: 'a'},
+      {id: 21, q: 'img/B2.bmp', opts: choices[2], ans: 'b'},
+      {id: 22, q: 'img/B3.bmp', opts: choices[2], ans: 'c'},
+      {id: 23, q: 'img/B4.bmp', opts: choices[2], ans: 'd'}
     ]
   ];
 
   return {
-    all: function(round){
-      var arr = [];
-      for(var i=0; i<questions.length;i++){
-        if(round === questions[i].round){
-          arr.push(questions[i]);
-        }
-      };
-      return arr;
+    training: function(round){
+      return questions[round];
+    },
+    test: function(qst){ // qst is an array
+      tests = []
+      for(var i=0;i<qst.length;i++){
+        var j = qst[i] + 2;
+        tests = tests.concat(questions[j]);
+      }
+      return tests;
     }
+
   };
 })
 
