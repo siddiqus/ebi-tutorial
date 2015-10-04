@@ -160,6 +160,7 @@ angular.module('ebi.controllers')
       }
     }
     $scope.correctAnswers = 0;
+    $scope.testAnswered = 0;
     var alertPopup = $ionicPopup.alert({
       template: "<center><h3>Great! Tap OK to start the next " + $scope.playState + " round.</h3></center>"
     });
@@ -170,9 +171,7 @@ angular.module('ebi.controllers')
     for(var i=0;i<$scope.questions.length;i++){
       $scope.questions[i].answered = null;
     };
-    if($scope.playState == 'Training'){
-      $scope.trainingRound = $scope.testRound;
-    } else {
+    if($scope.playState == 'Test'){
       if($scope.testRound == 0 || $scope.testRound == 1){
         $scope.trainingRound = $scope.testRound;
       } else {
@@ -180,6 +179,11 @@ angular.module('ebi.controllers')
       }
       $scope.playState = 'Training';
     }
+
+    if($scope.testRound > 1){
+      $scope.trainingRound = 0;
+    }
+
     $scope.questions = Questions.training($scope.trainingRound);
 
     $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
@@ -202,7 +206,6 @@ angular.module('ebi.controllers')
   };
 
   $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
-
   $scope.questions = Questions.training(0);
 
   $scope.pickTrainingAnswer = function(question, ans){
@@ -274,39 +277,5 @@ angular.module('ebi.controllers')
       $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
     }
   };
-
-
-
-
-
-      // else {
-      //   $ionicSlideBoxDelegate.slide($scope.pickNextTestQuestion(question));
-      //   $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
-      //   $scope.correctAnswers = $scope.correctAnswers + 1;
-      // };
-    // } else {
-    //
-    // }
-
-    // if($scope.correctAnswers == $scope.neededAnswerCount()){
-    //   $scope.nextPlayState();
-    // } else {
-    //   $ionicSlideBoxDelegate.slide($scope.pickNextTestQuestion(question));
-    //   $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
-    //   $scope.correctAnswers = $scope.correctAnswers + 1;
-    // };
-    //
-    // } else {
-    //   if ($scope.testAnswered == $scope.maxAnswerCount() ){
-    //     $scope.testAnswered = 0;
-    //     $scope.processFailedState();
-    //   } else {
-    //     $scope.correctAnswers = 0;
-    //     $ionicSlideBoxDelegate.slide(0);
-    //     $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
-    //   }
-    // }
-    // $scope.testAnswered = $scope.testAnswered + 1;
-  // };
 
 });
