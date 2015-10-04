@@ -7,6 +7,7 @@ angular.module('ebi.controllers')
     $scope.testRound = 0;
     $scope.playState = 'Training'; // or 'Test'
     $scope.correctAnswers = 10;
+    $scope.testAnswered = 0;
     if($scope.questions){
       for(var i=0;i<$scope.questions.length;i++){
         $scope.questions[i].answered = null;
@@ -31,10 +32,7 @@ angular.module('ebi.controllers')
     });
     confirmPopup.then(function(res) {
       if(res) {
-        $scope.correctAnswers = 0;
-        $scope.trainingRound = 0;
-        $scope.testRound = 0;
-        $scope.playState = 'Training';
+        $scope.resetPlay();
         $ionicSlideBoxDelegate.slide(0,10);
         $location.path('tab.dash');
       }
@@ -54,69 +52,6 @@ angular.module('ebi.controllers')
     // .then(function(res) {
     // });
   };
-
-  $scope.pickTrainingAnswer = function(question, ans){
-    if(question.ans === ans){
-      // add weights to answered
-      if(question.answered){
-        question.answered = question.answered + 1;
-      } else {
-        question.answered = 1;
-      }
-
-      if($scope.correctAnswers == $scope.neededAnswerCount()){
-        $scope.nextPlayState();
-      } else {
-        var alertPopup = $ionicPopup.alert({
-          // title: 'Don\'t eat that!',
-          template: "<center><h3><font color='blue'>CORRECT!</font></h3></center>"
-        });
-
-        alertPopup.then(function(res) {
-          $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
-          $ionicSlideBoxDelegate.slide($scope.pickNextTrainingQuestion(question));
-          $scope.correctAnswers = $scope.correctAnswers + 1;
-        });
-      };
-    } else {
-      var alertPopup = $ionicPopup.alert({
-        template: "<center><h3><font color='red'>INCORRECT!</font></h3></center>"
-      });
-      alertPopup.then(function(res) {
-        $scope.processFailedState();
-        $scope.correctAnswers = 0;
-        $ionicSlideBoxDelegate.slide(0);
-        $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
-      });
-    }
-  };
-
-
-  $scope.pickTestAnswer = function(question, ans){
-    if(question.ans === ans){
-      // add weights to answered
-      if(question.answered){
-        question.answered = question.answered + 1;
-      } else {
-        question.answered = 1;
-      }
-
-      if($scope.correctAnswers == $scope.neededAnswerCount()){
-        $scope.nextPlayState();
-      } else {
-        $ionicSlideBoxDelegate.slide($scope.pickNextTestQuestion(question));
-        $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
-        $scope.correctAnswers = $scope.correctAnswers + 1;
-      };
-
-    } else {
-      $scope.processFailedState();
-      $scope.correctAnswers = 0;
-      $ionicSlideBoxDelegate.slide(0);
-      $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
-    }
-  };
-
 
   $scope.pickAnswer = function(question,ans){
     if($scope.playState == 'Training'){
@@ -163,17 +98,33 @@ angular.module('ebi.controllers')
     }
   };
 
+  $scope.playHeader = function() {
+    if($scope.playState == 'Training'){
+      return 'Correct';
+    } else {
+      return 'Answered';
+    }
+  };
+
+  $scope.stateAnswerCount = function() {
+    if($scope.playState == 'Training'){
+      return $scope.correctAnswers;
+    } else {
+      return $scope.testAnswered;
+    }
+  };
+
   $scope.neededAnswerCount = function(){
     if($scope.playState == 'Training'){
       return 11;
     } else {
       var round = $scope.testRound;
-      if ([0,1,3,4].indexOf(round)){
-        return 6;
+      if (round == 0 || round == 1 || round == 3 || round == 4){
+        return 7;
       } else if (round == 2) {
-        return 13;
+        return 14;
       } else {
-        return 20;
+        return 21;
       }
     }
   };
@@ -230,7 +181,10 @@ angular.module('ebi.controllers')
       $scope.playState = 'Training';
     }
     $scope.questions = Questions.training($scope.trainingRound);
+
+    $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
     $ionicSlideBoxDelegate.update();
+    $ionicSlideBoxDelegate.slide(0);
   };
 
   $scope.randomNumber = function(){
@@ -250,4 +204,109 @@ angular.module('ebi.controllers')
   $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
 
   $scope.questions = Questions.training(0);
+
+  $scope.pickTrainingAnswer = function(question, ans){
+    if(question.ans === ans){
+      // add weights to answered
+      if(question.answered){
+        question.answered = question.answered + 1;
+      } else {
+        question.answered = 1;
+      }
+
+      if($scope.correctAnswers == $scope.neededAnswerCount()){
+        $scope.nextPlayState();
+      } else {
+        var alertPopup = $ionicPopup.alert({
+          // title: 'Don\'t eat that!',
+          template: "<center><h3><font color='blue'>CORRECT!</font></h3></center>"
+        });
+
+        alertPopup.then(function(res) {
+          $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
+          $ionicSlideBoxDelegate.slide($scope.pickNextTrainingQuestion(question));
+          $scope.correctAnswers = $scope.correctAnswers + 1;
+        });
+      };
+    } else {
+      var alertPopup = $ionicPopup.alert({
+        template: "<center><h3><font color='red'>INCORRECT!</font></h3></center>"
+      });
+      alertPopup.then(function(res) {
+        $scope.correctAnswers = 0;
+        $scope.processFailedState();
+      });
+    }
+  };
+
+
+  $scope.pickTestAnswer = function(question, ans){
+
+    $scope.testAnswered = $scope.testAnswered + 1;
+
+    if(question.ans === ans){
+      // add weights to answered
+      if(question.answered){
+        question.answered = question.answered + 1;
+      } else {
+        question.answered = 1;
+      }
+      $scope.correctAnswers = $scope.correctAnswers + 1;
+    }
+
+      // if needed answer count is reached, go to the next state
+    if($scope.correctAnswers == $scope.neededAnswerCount()){
+      $scope.nextPlayState();
+      return true;
+    } else if ($scope.testAnswered == $scope.maxAnswerCount()){
+
+      var alertPopup = $ionicPopup.alert({
+        template: "<center><h3>Test failed! Press OK to go back to training.</h3></center>"
+      }).then(function(){
+        $scope.testAnswered = 0;
+        $scope.correctAnswers = 0;
+        $scope.processFailedState();
+        return true;
+      });
+    } else {
+      // next question
+      $ionicSlideBoxDelegate.slide($scope.pickNextTestQuestion(question));
+      $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
+    }
+  };
+
+
+
+
+
+      // else {
+      //   $ionicSlideBoxDelegate.slide($scope.pickNextTestQuestion(question));
+      //   $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
+      //   $scope.correctAnswers = $scope.correctAnswers + 1;
+      // };
+    // } else {
+    //
+    // }
+
+    // if($scope.correctAnswers == $scope.neededAnswerCount()){
+    //   $scope.nextPlayState();
+    // } else {
+    //   $ionicSlideBoxDelegate.slide($scope.pickNextTestQuestion(question));
+    //   $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
+    //   $scope.correctAnswers = $scope.correctAnswers + 1;
+    // };
+    //
+    // } else {
+    //   if ($scope.testAnswered == $scope.maxAnswerCount() ){
+    //     $scope.testAnswered = 0;
+    //     $scope.processFailedState();
+    //   } else {
+    //     $scope.correctAnswers = 0;
+    //     $ionicSlideBoxDelegate.slide(0);
+    //     $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
+    //   }
+    // }
+    // $scope.testAnswered = $scope.testAnswered + 1;
+  // };
+
 });
