@@ -6,7 +6,7 @@ angular.module('ebi.controllers')
     $scope.trainingRound = 0;
     $scope.testRound = 0;
     $scope.playState = 'Training'; // or 'Test'
-    $scope.correctAnswers = 10;
+    $scope.correctAnswers = 0;
     $scope.testAnswered = 0;
     if($scope.questions){
       for(var i=0;i<$scope.questions.length;i++){
@@ -39,20 +39,7 @@ angular.module('ebi.controllers')
     });
   };
 
-  $scope.nextRound = function(){
-    $scope.correctAnswers = 0;
-    $scope.round = $scope.round + 1;
-    $scope.questions = Questions.all($scope.round);
-    $ionicSlideBoxDelegate.update();
-
-    var alertPopup = $ionicPopup.alert({
-      template: "<center><h3>Great! Tap OK to start the next round.</h3></center>"
-    });
-    // alertPopup();
-    // .then(function(res) {
-    // });
-  };
-
+  
   $scope.pickAnswer = function(question,ans){
     if($scope.playState == 'Training'){
       $scope.pickTrainingAnswer(question,ans);
@@ -188,7 +175,6 @@ angular.module('ebi.controllers')
 
     $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
     $ionicSlideBoxDelegate.update();
-    $ionicSlideBoxDelegate.slide(0);
   };
 
   $scope.randomNumber = function(){

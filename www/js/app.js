@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('ebi', ['ionic', 'ebi.controllers', 'ebi.services'])
 
-.run(function($ionicPlatform, $rootScope) {
+.run(function($ionicPlatform, $state, $rootScope) {
   $rootScope.chosenCategory = 0;
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,6 +21,9 @@ angular.module('ebi', ['ionic', 'ebi.controllers', 'ebi.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+
+    $state.go('tab.dash');
+
   });
 })
 
