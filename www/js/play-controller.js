@@ -153,14 +153,13 @@ angular.module('ebi.controllers')
       return 12;
     } else {
       var round = $scope.testRound;
-      // if ([0,1,3,4].indexOf(round)){
-      //   return 8;
-      // } else if (round == 2) {
-      //   return 16;
-      // } else {
-      //   return 24;
-      // }
-      return $scope.questions.length;
+      if (round == 0 || round == 1 || round == 3 || round == 4){
+        return 8;
+      } else if (round == 2) {
+        return 16;
+      } else {
+        return 24;
+      }
     }
   };
 
