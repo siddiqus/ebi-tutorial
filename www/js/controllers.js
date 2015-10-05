@@ -37,6 +37,11 @@ angular.module('ebi.controllers', [])
     $scope.closeStartInfo();
     $location.path('play');
   };
+
+  $scope.pretest = function(){
+    $location.path('#/play/1');
+  };
+
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {

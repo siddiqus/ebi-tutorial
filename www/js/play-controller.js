@@ -8,6 +8,22 @@ angular.module('ebi.controllers')
     $scope.playState = 'Training'; // or 'Test'
     $scope.correctAnswers = 0;
     $scope.testAnswered = 0;
+
+    if($scope.questions){
+      for(var i=0;i<$scope.questions.length;i++){
+        $scope.questions[i].answered = null;
+      }
+    }
+  };
+
+  $scope.startPretest = function() {
+    $scope.questions = Questions.testing([0,1,2,3]);
+    $scope.trainingRound = 0;
+    $scope.testRound = 5;
+    $scope.playState = 'Test'; // or 'Test'
+    $scope.correctAnswers = 0;
+    $scope.testAnswered = 0;
+
     if($scope.questions){
       for(var i=0;i<$scope.questions.length;i++){
         $scope.questions[i].answered = null;
@@ -16,8 +32,12 @@ angular.module('ebi.controllers')
   };
 
   // reset all variables
+  // if($stateParams.type){
+  //   $scope.startPretest();
+  // } else {
+  //   $scope.resetPlay();
+  // }
   $scope.resetPlay();
-
   // text for game header
   $scope.roundDisplay = function(){
     var round = ($scope.playState == 'Training') ? $scope.trainingRound : $scope.testRound;
@@ -39,7 +59,7 @@ angular.module('ebi.controllers')
     });
   };
 
-  
+
   $scope.pickAnswer = function(question,ans){
     if($scope.playState == 'Training'){
       $scope.pickTrainingAnswer(question,ans);
@@ -192,7 +212,6 @@ angular.module('ebi.controllers')
   };
 
   $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
-  $scope.questions = Questions.training(0);
 
   $scope.pickTrainingAnswer = function(question, ans){
     if(question.ans === ans){
