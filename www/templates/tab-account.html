@@ -22,7 +22,8 @@
   <ion-content class='padding light-gray-background'>
 
     <ion-list>
-      <ion-item ng-repeat="category in categories" class='animated fadeInUp card padding' ng-click="chooseCategory(category.id)">
+      <br>
+      <ion-item ng-repeat="category in categories" class='animated fadeInUp list-item padding' ng-click="chooseCategory(category.id)">
         <!-- <ion-radio ng-model="chosenCategory" ng-class="setRadioClass(category.id)">{{category.name}}</ion-radio> -->
         <div class='row'>
           <div class='col col-80' style='font-size:1.2em;'> {{category.name}} </div>
