@@ -227,7 +227,7 @@ angular.module('ebi.controllers')
       } else {
         var alertPopup = $ionicPopup.alert({
           // title: 'Don\'t eat that!',
-          template: "<center><h3><font color='blue'>CORRECT!</font></h3></center>"
+          template: "<center><h3><font color='blue'><b>CORRECT!</b></font></h3></center>"
         });
 
         alertPopup.then(function(res) {
@@ -238,7 +238,7 @@ angular.module('ebi.controllers')
       };
     } else {
       var alertPopup = $ionicPopup.alert({
-        template: "<center><h3><font color='red'>INCORRECT!</font></h3></center>"
+        template: "<center><h3><font color='red'><b>INCORRECT!</b></font></h3></center>"
       });
       alertPopup.then(function(res) {
         $scope.correctAnswers = 0;
