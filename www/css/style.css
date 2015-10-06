@@ -103,6 +103,10 @@ ion-content, .light-gray-background {
   box-shadow: 0px 0px 25px 10px gray !important;
 }
 
+.popup-head h3 {
+  font-weight: bold;
+}
+
 .popup .popup-buttons button {
   border: 0 !important;
   box-shadow: 1px 1px 2px 0px gray !important;
@@ -140,4 +144,8 @@ ion-content, .light-gray-background {
 
 ion-item {
   white-space: normal !important;
+}
+
+.tutorial-content {
+  margin-top: 0.5em;
 }
