@@ -31,10 +31,14 @@ body, button, ion-content, ion-header-bar, .bar-subheader, .bar-stable, .popup {
 ion-header-bar .buttons button {
   border: 0 !important;
   box-shadow: 0px 1px 3px 0px gray !important;
+  -webkit-box-shadow: 0px 1px 3px 0px gray !important;
+  -moz-box-shadow: 0px 1px 3px 0px gray !important;
 }
 
 .bar-stable, .bar-subheader {
   box-shadow: 0px 1px 4px 1px lightgray !important;
+  -webkit-box-shadow: 0px 1px 4px 1px lightgray !important;
+  -moz-box-shadow: 0px 1px 4px 1px lightgray !important;
 }
 
 .start-info {
@@ -95,12 +99,16 @@ ion-content, .light-gray-background {
 .list-item {
   margin-top: 0.5em;
   box-shadow: 0px 1px 1px 1px lightgray;
+  -webkit-box-shadow: 0px 1px 1px 1px lightgray;
+  -moz-box-shadow: 0px 1px 1px 1px lightgray;
   border: 0 !important;
 }
 
 
 .popup {
   box-shadow: 0px 0px 25px 10px gray !important;
+  -webkit-box-shadow: 0px 0px 25px 10px gray !important;
+  -moz-box-shadow: 0px 0px 25px 10px gray !important;
 }
 
 .popup-head h3 {
@@ -110,10 +118,14 @@ ion-content, .light-gray-background {
 .popup .popup-buttons button {
   border: 0 !important;
   box-shadow: 1px 1px 2px 0px gray !important;
+  -webkit-box-shadow: 1px 1px 2px 0px gray !important;
+  -moz-box-shadow: 1px 1px 2px 0px gray !important;
 }
 
 .under-shadow {
   box-shadow: 1px 2px 2px 1px lightgray !important;
+  -webkit-box-shadow: 1px 2px 2px 1px lightgray !important;
+  -moz-box-shadow: 1px 2px 2px 1px lightgray !important;
 }
 
 .answer-boxes .activated img {
@@ -125,12 +137,16 @@ ion-content, .light-gray-background {
 }
 .answer-boxes .qst img {
   box-shadow: 1px 1px 3px 0px gray;
+  -webkit-box-shadow: 1px 1px 3px 0px gray;
+  -moz-box-shadow: 1px 1px 3px 0px gray;
   border-radius: 0.2em;
 }
 .answer-boxes .answers img {
   /*border: 1px solid lightgray;*/
   border-radius: 0.2em;
   box-shadow: 1px 1px 3px 0px gray;
+  -webkit-box-shadow: 1px 1px 3px 0px gray;
+  -moz-box-shadow: 1px 1px 3px 0px gray;
 }
 
 .box-shadow {
