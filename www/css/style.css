@@ -124,12 +124,13 @@ ion-content, .light-gray-background {
   margin-top: 0.3em;
 }
 .answer-boxes .qst img {
-  box-shadow: 0px 1px 2px 1px lightgray;
+  box-shadow: 1px 1px 3px 0px gray;
+  border-radius: 0.2em;
 }
 .answer-boxes .answers img {
   /*border: 1px solid lightgray;*/
   border-radius: 0.2em;
-  box-shadow: 0px 1px 2px 1px lightgray;
+  box-shadow: 1px 1px 3px 0px gray;
 }
 
 .box-shadow {
