@@ -36,14 +36,22 @@ ion-header-bar .buttons button {
 }
 
 .bar-stable, .bar-subheader {
-  box-shadow: 0px 1px 4px 1px lightgray !important;
-  -webkit-box-shadow: 0px 1px 4px 1px lightgray !important;
-  -moz-box-shadow: 0px 1px 4px 1px lightgray !important;
+  box-shadow:         0px 1px 2px 1px gray !important;
+  -webkit-box-shadow: 0px 1px 2px 1px gray !important;
+  -moz-box-shadow:    0px 1px 2px 1px gray !important;
 }
 
 .start-info {
   font-size: 1.3em;
   line-height: normal;
+}
+
+.purple-bg {
+  background-color: rgb(192, 145, 239) !important;
+}
+
+.light-purple-bg {
+  background-color: #F4EBFD !important;
 }
 
 .gray-background {
@@ -55,7 +63,8 @@ ion-content, .light-gray-background {
 }
 
 .bar-subheader {
-  background-color: #F2EFEF !important;
+    background-color: #AC7BDE !important;
+    color: white !important;
 }
 
 .home-button {
@@ -98,9 +107,9 @@ ion-content, .light-gray-background {
 
 .list-item {
   margin-top: 0.5em;
-  box-shadow: 0px 1px 1px 1px lightgray;
-  -webkit-box-shadow: 0px 1px 1px 1px lightgray;
-  -moz-box-shadow: 0px 1px 1px 1px lightgray;
+  box-shadow:           1px 1px 1px 0px gray;
+  -webkit-box-shadow:   1px 1px 1px 0px gray;
+  -moz-box-shadow:      1px 1px 1px 0px gray;
   border: 0 !important;
 }
 
@@ -154,9 +163,9 @@ ion-content, .light-gray-background {
   margin-top: -0.2em;
   height: 0.2em;
   margin-bottom: 0.5em;
-  box-shadow: 0px 2px 2px 0px lightgray;
-  -webkit-box-shadow: 0px 2px 2px 0px lightgray;
-  -moz-box-shadow: 0px 2px 2px 0px lightgray;
+  box-shadow:         0px 2px 2px 0px gray;
+  /*-webkit-box-shadow: 0px 2px 2px 0px gray;
+  -moz-box-shadow:    0px 2px 2px 0px gray;*/
 }
 
 ion-item {
