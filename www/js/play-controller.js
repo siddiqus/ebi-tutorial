@@ -1,6 +1,22 @@
 angular.module('ebi.controllers')
 .controller('PlayCtrl', function($scope, $stateParams, $location, $ionicPopup, $ionicSlideBoxDelegate, Questions) {
 
+  // HELPER Methods
+  $scope.randomNumber = function(){
+    return Math.floor((Math.random() * $scope.questions.length));
+  };
+
+  $scope.shuffleArray = function(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+  };
+
+
   $scope.resetPlay = function(){
     $scope.questions = Questions.training(0);
     $scope.trainingRound = 0;
@@ -8,7 +24,7 @@ angular.module('ebi.controllers')
     $scope.playState = 'Training'; // or 'Test'
     $scope.correctAnswers = 0;
     $scope.testAnswered = 0;
-
+    $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
     if($scope.questions){
       for(var i=0;i<$scope.questions.length;i++){
         $scope.questions[i].answered = null;
@@ -197,22 +213,6 @@ angular.module('ebi.controllers')
     $ionicSlideBoxDelegate.update();
   };
 
-  $scope.randomNumber = function(){
-    return Math.floor((Math.random() * $scope.questions.length));
-  };
-
-  $scope.shuffleArray = function(array) {
-    for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-    return array;
-  };
-
-  $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
-
   $scope.pickTrainingAnswer = function(question, ans){
     if(question.ans === ans){
       // add weights to answered
@@ -232,8 +232,8 @@ angular.module('ebi.controllers')
 
         alertPopup.then(function(res) {
           $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
-          $ionicSlideBoxDelegate.slide($scope.pickNextTrainingQuestion(question));
           $scope.correctAnswers = $scope.correctAnswers + 1;
+          $ionicSlideBoxDelegate.slide($scope.pickNextTrainingQuestion(question));
         });
       };
     } else {
