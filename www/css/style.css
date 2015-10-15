@@ -52,7 +52,7 @@ ion-header-bar .buttons button {
 }
 
 .light-purple-bg {
-  background-color: #F1E3FF !important;
+  background-color: #F7EFFF !important;
 }
 
 .gray-background {
@@ -64,7 +64,7 @@ ion-content, .light-gray-background {
 }
 
 .bar-subheader {
-  background-color: #EAEAEA !important;
+  background-color: #FAFAFA !important;
     /*color: white !important;*/
 }
 
