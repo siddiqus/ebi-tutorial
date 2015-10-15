@@ -142,6 +142,13 @@ ion-content, .light-gray-background {
   opacity: 0.3;
 }
 
+.qst {
+  margin-bottom: 0.5em;
+  box-shadow:           1px 2px 2px 0px gray !important;
+  -webkit-box-shadow:   1px 2px 2px 0px gray !important;
+  -moz-box-shadow:      1px 2px 2px 0px gray !important;
+}
+
 .answer-boxes .qst {
   margin-top: 0.3em;
 }
