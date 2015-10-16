@@ -11,13 +11,19 @@
    {{category.name}}
  </ion-header-bar>
  <br></br>
- <ion-content class='padding light-purple-bg'>
-   <div class='card padding start-info'>
-     To complete one round, you must choose correctly 12 times in a row.
-   </div>
-   <div class='card padding start-info'>
-     If you choose an incorrect answer before getting 12 correct, you will be taken back to the start.
-   </div>
-   <center class='home-buttons'> <button ng-click="start()" class='button button-royal card'><b>START</b></button></center>
+ <ion-content class='padding light-purple-bg item-list'>
+   <br/>
+   <ion-item class='padding-vertical start-info list-item'>
+     First, you will be given a pretest with all possible questions to assess your knowledge. Then you will be given a series of trainings and tests.
+   </ion-item>
+   <ion-item class='padding-vertical start-info list-item'>
+     To complete one Training round, you must choose correctly 12 times in a row. Otherwise, you will be taken back to the beginning of the training.
+   </ion-item>
+   <ion-item class='padding-vertical start-info list-item'>
+     If you fail any of the tests after the Pretest, you will be brought back to the initial training.
+   </ion-item>
+   <center class='home-buttons'>
+     <button ng-click="start()" class='col button button-royal card'><b>START</b></button>
+   </center>
  </ion-content>
 </ion-modal-view>

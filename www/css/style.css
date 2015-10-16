@@ -43,8 +43,9 @@ ion-header-bar .buttons button {
 }
 
 .start-info {
-  font-size: 1.3em;
+  font-size: 1.1em;
   line-height: normal;
+  margin: 0.5em 0em;
 }
 
 .purple-bg {

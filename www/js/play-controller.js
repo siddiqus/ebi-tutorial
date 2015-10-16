@@ -18,6 +18,7 @@ angular.module('ebi.controllers')
 
 
   $scope.resetPlay = function(){
+    $scope.pretest = false;
     $scope.questions = Questions.training(0);
     $scope.trainingRound = 0;
     $scope.testRound = 0;
@@ -31,40 +32,39 @@ angular.module('ebi.controllers')
         $scope.questions[i].answered = null;
       }
     }
-
-    $scope.correctAnswers = 20;
-    $scope.testAnswered = 20;
-    $scope.playState = 'Test';
-    $scope.testRound = 5;
-    $scope.questions = Questions.testing([0,1,2,3]);
+    $ionicSlideBoxDelegate.slide(0);
+    $ionicSlideBoxDelegate.update();
   };
 
-  $scope.startPretest = function() {
-    $scope.questions = Questions.testing([0,1,2,3]);
+  $scope.resetToPretest = function(){
+    $scope.pretest = true;
     $scope.trainingRound = 0;
     $scope.testRound = 5;
-    $scope.playState = 'Test'; // or 'Test'
+    $scope.playState = 'Test';
     $scope.correctAnswers = 0;
     $scope.testAnswered = 0;
-
+    $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
+    $scope.programComplete = false;
+    $scope.questions = Questions.testing([0,1,2,3]);
     if($scope.questions){
       for(var i=0;i<$scope.questions.length;i++){
         $scope.questions[i].answered = null;
       }
     }
+    $ionicSlideBoxDelegate.slide(0);
+    $ionicSlideBoxDelegate.update();
   };
 
-  // reset all variables
-  // if($stateParams.type){
-  //   $scope.startPretest();
-  // } else {
-  //   $scope.resetPlay();
-  // }
-  $scope.resetPlay();
+  $scope.resetToPretest();
+
   // text for game header
   $scope.roundDisplay = function(){
-    var round = ($scope.playState == 'Training') ? $scope.trainingRound : $scope.testRound;
-    return $scope.playState + ' ' + (round + 1);
+    if($scope.pretest){
+      return "Pretest";
+    } else {
+      var round = ($scope.playState == 'Training') ? $scope.trainingRound : $scope.testRound;
+      return $scope.playState + ' ' + (round + 1);
+    }
   };
 
   // exit game
@@ -74,7 +74,7 @@ angular.module('ebi.controllers')
       template: "<center> Are you sure you want to exit the program? </center>"
     }).then(function(res) {
       if(res) {
-        $scope.resetPlay();
+        $scope.resetToPretest();
         $ionicSlideBoxDelegate.slide(0,10);
         $location.path('tab.dash');
       }
@@ -83,7 +83,9 @@ angular.module('ebi.controllers')
 
 
   $scope.pickAnswer = function(question,ans){
-    if($scope.playState == 'Training'){
+    if($scope.pretest){
+      $scope.pickPretestAnswer(question,ans);
+    } else if($scope.playState == 'Training'){
       $scope.pickTrainingAnswer(question,ans);
     } else {
       $scope.pickTestAnswer(question,ans);
@@ -192,13 +194,13 @@ angular.module('ebi.controllers')
     }
     if($scope.programComplete){
       var completePopup = $ionicPopup.alert({
-        template: "<center><h3>Congratulations! You have completed the tutorial.</h3></center>",
+        template: "<center><h3>Congratulations! <br> You have completed the tutorial.</h3></center>",
         buttons: [
           {
             type:'button-positive',
             text:'Back to Home',
             onTap: function(){
-              $scope.resetPlay();
+              $scope.resetToPretest();
               $location.path('tab.dash');
             }
           }
@@ -295,6 +297,33 @@ angular.module('ebi.controllers')
         $scope.correctAnswers = 0;
         $scope.processFailedState();
         return true;
+      });
+    } else {
+      // next question
+      $ionicSlideBoxDelegate.slide($scope.pickNextTestQuestion(question));
+      $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
+    }
+  };
+
+  $scope.pickPretestAnswer = function(question, ans){
+    $scope.testAnswered = $scope.testAnswered + 1;
+
+    // correct answers / data collection
+    if(question.ans === ans){
+      // add weights to answered
+      if(question.answered){
+        question.answered = question.answered + 1;
+      } else {
+        question.answered = 1;
+      }
+      $scope.correctAnswers = $scope.correctAnswers + 1;
+    }
+      // if needed answer count is reached, go to the next state
+    if($scope.testAnswered == 24){
+      var pretestCompletePopup = $ionicPopup.alert({
+        template: "<center><h3>Pre-Test Complete! Press OK to start tutorial.</h3></center>"
+      }).then(function(){
+        $scope.resetPlay();
       });
     } else {
       // next question
