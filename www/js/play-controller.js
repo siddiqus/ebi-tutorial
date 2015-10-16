@@ -25,11 +25,18 @@ angular.module('ebi.controllers')
     $scope.correctAnswers = 0;
     $scope.testAnswered = 0;
     $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
+    $scope.programComplete = false;
     if($scope.questions){
       for(var i=0;i<$scope.questions.length;i++){
         $scope.questions[i].answered = null;
       }
     }
+
+    $scope.correctAnswers = 20;
+    $scope.testAnswered = 20;
+    $scope.playState = 'Test';
+    $scope.testRound = 5;
+    $scope.questions = Questions.testing([0,1,2,3]);
   };
 
   $scope.startPretest = function() {
@@ -65,8 +72,7 @@ angular.module('ebi.controllers')
     var confirmPopup = $ionicPopup.confirm({
       title: 'Back to Home',
       template: "<center> Are you sure you want to exit the program? </center>"
-    });
-    confirmPopup.then(function(res) {
+    }).then(function(res) {
       if(res) {
         $scope.resetPlay();
         $ionicSlideBoxDelegate.slide(0,10);
@@ -176,18 +182,36 @@ angular.module('ebi.controllers')
         $scope.playState = 'Test';
         $scope.testRound = 4;
         $scope.questions = Questions.testing([3]);
-      } else {
+      } else if ($scope.testRound == 4){
         $scope.playState = 'Test';
         $scope.testRound = 5;
         $scope.questions = Questions.testing([0,1,2,3]);
+      } else {
+        $scope.programComplete = true;
       }
     }
-    $scope.correctAnswers = 0;
-    $scope.testAnswered = 0;
-    var alertPopup = $ionicPopup.alert({
-      template: "<center><h3>Great! Tap OK to start the next " + $scope.playState + " round.</h3></center>"
-    });
-    $ionicSlideBoxDelegate.update();
+    if($scope.programComplete){
+      var completePopup = $ionicPopup.alert({
+        template: "<center><h3>Congratulations! You have completed the tutorial.</h3></center>",
+        buttons: [
+          {
+            type:'button-positive',
+            text:'Back to Home',
+            onTap: function(){
+              $scope.resetPlay();
+              $location.path('tab.dash');
+            }
+          }
+        ]
+      });
+    } else {
+      $scope.correctAnswers = 0;
+      $scope.testAnswered = 0;
+      var nextStatePopup = $ionicPopup.alert({
+        template: "<center><h3>Great! Tap OK to start the next " + $scope.playState + " round.</h3></center>"
+      });
+      $ionicSlideBoxDelegate.update();
+    }
   }
 
   $scope.processFailedState = function(){
@@ -225,22 +249,18 @@ angular.module('ebi.controllers')
       if($scope.correctAnswers == $scope.neededAnswerCount()){
         $scope.nextPlayState();
       } else {
-        var alertPopup = $ionicPopup.alert({
-          // title: 'Don\'t eat that!',
+        var correctPopup = $ionicPopup.alert({
           template: "<center><h3><font color='blue'><b>CORRECT!</b></font></h3></center>"
-        });
-
-        alertPopup.then(function(res) {
+        }).then(function(res) {
           $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
           $scope.correctAnswers = $scope.correctAnswers + 1;
           $ionicSlideBoxDelegate.slide($scope.pickNextTrainingQuestion(question));
         });
       };
     } else {
-      var alertPopup = $ionicPopup.alert({
+      var incorrectPopup = $ionicPopup.alert({
         template: "<center><h3><font color='red'><b>INCORRECT!</b></font></h3></center>"
-      });
-      alertPopup.then(function(res) {
+      }).then(function(res) {
         $scope.correctAnswers = 0;
         $scope.processFailedState();
       });
@@ -268,7 +288,7 @@ angular.module('ebi.controllers')
       return true;
     } else if ($scope.testAnswered == $scope.maxAnswerCount()){
 
-      var alertPopup = $ionicPopup.alert({
+      var failedPopup = $ionicPopup.alert({
         template: "<center><h3>Test failed! Press OK to go back to training.</h3></center>"
       }).then(function(){
         $scope.testAnswered = 0;
