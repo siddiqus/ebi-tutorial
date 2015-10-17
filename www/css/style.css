@@ -75,12 +75,17 @@ ion-content, .light-gray-background {
   font-size: 1.1em;
   font-weight: bold;
   display: block !important;
-  border: 0 !important;
   box-shadow: 1px 1px 2px 0px gray !important;
   -webkit-box-shadow: 1px 1px 2px 0px gray !important;
   -moz-box-shadow: 1px 1px 2px 0px gray !important;
+  border-radius: 0px !important;
   margin: 0em 0.2em;
   /*font-family: 'Roboto', sans-serif !important;*/
+}
+
+.button {
+  border: 0 !important;
+  border-radius: 0 !important;
 }
 
 .home-buttons {
@@ -137,6 +142,14 @@ ion-content, .light-gray-background {
   box-shadow: 1px 1px 2px 0px gray !important;
   -webkit-box-shadow: 1px 1px 2px 0px gray !important;
   -moz-box-shadow: 1px 1px 2px 0px gray !important;
+}
+
+
+.paper-button {
+  border: 0 !important;
+  /*box-shadow: 1px 1px 2px 0px gray !important;
+  -webkit-box-shadow: 1px 1px 2px 0px gray !important;
+  -moz-box-shadow: 1px 1px 2px 0px gray !important;*/
 }
 
 .under-shadow {
@@ -204,7 +217,11 @@ ion-item {
 }
 
 .play-type-nav {
-  box-shadow: 1px 0px 5px 0px gray;
+  /*box-shadow: 0px 1px 1px 0px gray;*/
+  border: 1px lightgray solid !important;
+  border-radius: 2px;
+  width: 96%;
+
 }
 
 .acqActive {

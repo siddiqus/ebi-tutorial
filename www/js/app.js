@@ -7,9 +7,27 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('ebi', ['ionic', 'ebi.controllers', 'ebi.services'])
 
-.run(function($ionicPlatform, $state, $ionicSlideBoxDelegate, $rootScope, Preferences) {
+.run(function($ionicPlatform, $state, $ionicLoading, $ionicSlideBoxDelegate, $rootScope, Preferences) {
   $rootScope.chosenCategory = Preferences.category();
   $rootScope.playType = Preferences.playType();
+
+  // $rootScope.showLoading = function() {
+  //   $ionicLoading.show({
+  //     template: '<ion-spinner icon="circles"></ion-spinner>'
+  //   });
+  // };
+  //
+  // $rootScope.hideLoading = function(){
+  //   $ionicLoading.hide();
+  // };
+  //
+  // $rootScope.$on('$stateChangeStart', function(){
+  //   $rootScope.showLoading();
+  // });
+  //
+  // $rootScope.$on('$stateChangeSuccess', function(){
+  //   $rootScope.hideLoading();
+  // });
 
   $rootScope.getSlideDelegate = function(handle){
     var ins = $ionicSlideBoxDelegate._instances;

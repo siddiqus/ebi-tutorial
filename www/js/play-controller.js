@@ -1,5 +1,5 @@
 angular.module('ebi.controllers')
-.controller('PlayCtrl', function($scope, $rootScope, $stateParams, $ionicView, $location, $ionicPopup, $ionicSlideBoxDelegate, Questions, Preferences) {
+.controller('PlayCtrl', function($scope, $rootScope, $stateParams, $location, $ionicPopup, $ionicSlideBoxDelegate, Questions, Preferences) {
 
   // HELPER Methods
   $scope.randomNumber = function(){
@@ -386,11 +386,16 @@ angular.module('ebi.controllers')
     }
   };
 
-  // $scope.$on('$stateChangeSuccess', function() {
-  //   if(Preferences.playType() == 'mnt'){
-  //     $scope.resetPlay();
-  //   } else {
-  //     $scope.resetToPretest();
-  //   };
-  // });
+  $scope.$on('$stateChangeSuccess', function() {
+    if(Preferences.playType() == 'mnt'){
+      $scope.resetPlay();
+    } else {
+      $scope.resetToPretest();
+    };
+  });
+
+  $scope.$on('$viewContentLoaded', function(){
+    console.log("changed view")
+  })
+
 });
