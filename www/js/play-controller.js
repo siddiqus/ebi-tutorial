@@ -32,8 +32,8 @@ angular.module('ebi.controllers')
         $scope.questions[i].answered = null;
       }
     }
-    $ionicSlideBoxDelegate.slide(0);
-    $ionicSlideBoxDelegate.update();
+    $rootScope.getSlideDelegate('play-slide').slide(0);
+    $rootScope.getSlideDelegate('play-slide').update();
   };
 
   $scope.resetToPretest = function(){
@@ -51,8 +51,8 @@ angular.module('ebi.controllers')
         $scope.questions[i].answered = null;
       }
     }
-    $ionicSlideBoxDelegate.slide(0);
-    $ionicSlideBoxDelegate.update();
+    $rootScope.getSlideDelegate('play-slide').slide(0);
+    $rootScope.getSlideDelegate('play-slide').update();
   };
 
   // text for game header
@@ -210,7 +210,7 @@ angular.module('ebi.controllers')
       var nextStatePopup = $ionicPopup.alert({
         template: "<center><h3>Great! Tap OK to start the next " + $scope.playState + " round.</h3></center>"
       });
-      $ionicSlideBoxDelegate.update();
+      $rootScope.getSlideDelegate('play-slide').update();
     }
   }
 
@@ -247,7 +247,7 @@ angular.module('ebi.controllers')
       var nextStatePopup = $ionicPopup.alert({
         template: "<center><h3>Great! Tap OK to start the next " + $scope.playState + " round.</h3></center>"
       });
-      $ionicSlideBoxDelegate.update();
+      $rootScope.getSlideDelegate('play-slide').update();
     }
   };
 
@@ -271,7 +271,7 @@ angular.module('ebi.controllers')
     $scope.questions = Questions.training($scope.trainingRound);
 
     $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
-    $ionicSlideBoxDelegate.update();
+    $rootScope.getSlideDelegate('play-slide').update();
   };
 
   $scope.pickTrainingAnswer = function(question, ans){
