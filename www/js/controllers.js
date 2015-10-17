@@ -17,14 +17,6 @@ angular.module('ebi.controllers', [])
     $scope.startInfoModal = modal;
   });
 
-  $scope.typeToName = function(type){
-    if(type == 'acq'){
-      return 'ACQUISITION';
-    } else {
-      return 'MAINTENANCE';
-    }
-  };
-
   $scope.openTutorial = function() {
     $scope.activeSlide = 1;
     $scope.tutorialModal.show();

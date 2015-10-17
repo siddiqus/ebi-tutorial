@@ -11,6 +11,14 @@ angular.module('ebi', ['ionic', 'ebi.controllers', 'ebi.services'])
   $rootScope.chosenCategory = Preferences.category();
   $rootScope.playType = Preferences.playType();
 
+  $rootScope.typeToName = function(type){
+    if(type == 'acq'){
+      return 'ACQUISITION';
+    } else {
+      return 'MAINTENANCE';
+    }
+  };
+
   // $rootScope.showLoading = function() {
   //   $ionicLoading.show({
   //     template: '<ion-spinner icon="circles"></ion-spinner>'

@@ -171,7 +171,11 @@ angular.module('ebi.controllers')
       }
       $scope.questions = Questions.testing([$scope.testRound]);
     } else {
-      if($scope.testRound == 0){
+      if(Preferences.playType() == 'mnt'){
+        $scope.playState = 'Test';
+        $scope.testRound = 5;
+        $scope.questions = Questions.testing([0,1,2,3]);
+      } else if($scope.testRound == 0){
         $scope.playState = 'Training';
         $scope.trainingRound = 1;
         $scope.questions = Questions.training([1]);
@@ -274,9 +278,8 @@ angular.module('ebi.controllers')
     }
 
     $scope.questions = Questions.training($scope.trainingRound);
-
-    $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
     $rootScope.getSlideDelegate('play-slide').update();
+    $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
   };
 
   $scope.pickTrainingAnswer = function(question, ans){
@@ -294,9 +297,9 @@ angular.module('ebi.controllers')
         var correctPopup = $ionicPopup.alert({
           template: "<center><h3><font color='blue'><b>CORRECT!</b></font></h3></center>"
         }).then(function(res) {
-          $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
           $scope.correctAnswers = $scope.correctAnswers + 1;
           $ionicSlideBoxDelegate.slide($scope.pickNextTrainingQuestion(question));
+          $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
         });
       };
     } else {
@@ -399,8 +402,8 @@ angular.module('ebi.controllers')
     };
   });
 
-  $scope.$on('$viewContentLoaded', function(){
-    console.log("changed view")
-  })
+  $scope.currentType = function(){
+    return $rootScope.typeToName(Preferences.playType());
+  }
 
 });
