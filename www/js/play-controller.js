@@ -58,10 +58,10 @@ angular.module('ebi.controllers')
   // text for game header
   $scope.roundDisplay = function(){
     if($scope.pretest){
-      return "Pretest";
+      return "PRETEST";
     } else {
       var round = ($scope.playState == 'Training') ? $scope.trainingRound : $scope.testRound;
-      return $scope.playState + ' ' + (round + 1);
+      return $scope.playState.toUpperCase() + ' ' + (round + 1);
     }
   };
 
