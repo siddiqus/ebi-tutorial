@@ -1,19 +1,19 @@
 <ion-modal-view class='modal'>
   <ion-header-bar class="bar-positive" align-title='center' right-buttons='closeButton'>
-    <h1 class="title"> {{playStartHeader()}} </h1>
+    <h1 class="title"> {{typeToName(infoModalType)}} </h1>
     <div class='buttons'>
       <button class="button button-positive" ng-click="closeStartInfo()"><b>Back</b></button>
     </div>
   </ion-header-bar>
-  <ion-header-bar
+  <!-- <ion-header-bar
    style="font-size: 1.5em; height: 3em; text-align:center; padding-top:1em"
    class='bar-subheader bar-stable'>
    {{category.name}}
-  </ion-header-bar>
+  </ion-header-bar> -->
 
   <ion-content class='light-purple-bg item-list'>
   <ion-list class='play-start-info-list'>
-    <br/>
+    <!-- <br/> -->
      <div ng-if="checkPlayType('acq')">
        <ion-item class='padding-vertical start-info list-item margin'>
          First, you will be given a pretest with all possible questions to assess your knowledge. Then you will be given a series of Trainings and Tests.

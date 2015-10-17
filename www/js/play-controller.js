@@ -62,6 +62,8 @@ angular.module('ebi.controllers')
   $scope.roundDisplay = function(){
     if($scope.pretest){
       return "PRETEST";
+    } else if($scope.testRound == 5 && $scope.playState == 'Test'){
+      return 'POST TEST';
     } else {
       var round = ($scope.playState == 'Training') ? $scope.trainingRound : $scope.testRound;
       return $scope.playState.toUpperCase() + ' ' + (round + 1);
