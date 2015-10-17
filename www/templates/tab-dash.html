@@ -21,17 +21,58 @@
       Equivalence Based Instruction
   </ion-header-bar>
   <ion-content class="light-purple-bg">
-    <div class='play-start-info-list'>
+    <ion-list class='padding'>
+      <ion-item class='margin padding paper-button animated fadeInUp'>
+        Select a Tutorial Type:
+      </ion-item>
+
+      <div class='margin animated fadeInUp'>
+        <div class='row'>
+          <button class='item paper-button padding home-radio-button col col-80' ng-click="changePlayType('acq')">
+            <span class='btn'><i ng-class="setRadioClass('acq')"></i> &nbsp;</span>
+            <span class='text'> ACQUISITION </span>
+          </button>
+          <button class='item button button-positive paper-button col col-15 home-button-info' ng-click='openStartInfo("acq")'>
+            <center><i class='icon ion-ios-information-outline'></i></center>
+          </button>
+        </div>
+      </div>
+      <div class='margin animated fadeInUp'>
+        <div class='row'>
+          <button class='item paper-button padding home-radio-button col col-80' ng-click="changePlayType('mnt')">
+            <span class='btn'><i ng-class="setRadioClass('mnt')"></i> &nbsp;</span>
+            <span class='text'> MAINTENANCE </span>
+          </button>
+          <div class='item button button-positive paper-button col col-15 home-button-info' ng-click='openStartInfo("mnt")'>
+            <center><i class='icon ion-ios-information-outline'></i></center>
+          </div>
+        </div>
+      </div>
+      <div class='row animated fadeInUp'>
+        <div class='col paper-button button button-royal' ng-click='start()'>PLAY</div>
+      </div>
+    </ion-list>
+      <!-- <div class='item margin animated fadeInUp list-item'>
+        <div class='row'>
+          <div class='col col-80 home-radio-button' ng-click="changePlayType('mnt')">
+            <span class='btn'><i ng-class="setRadioClass('mnt')"></i> &nbsp;</span>
+            <span class='text'> MAINTENANCE </span>
+          </div>
+          <div class='col col-20 home-radio-button' ng-click='openStartInfo()'>
+            <span><i class='icon ion-ios-information'></i></span>
+          </div>
+        </div>
+      </div> -->
+
+    <!-- <div class='play-start-info-list'>
       <br/>
       <center class='row'>
-        <!-- <div class="row play-type-nav animated fadeInUp"> -->
           <div class="col bar-btn paper-button padding"
              ng-class="{acqActive: checkPlayType('acq')}"
              ng-click="changePlayType('acq')"><center> Acquisition </center> </div>
           <div class="col bar-btn paper-button padding"
              ng-class="{mntActive: checkPlayType('mnt')}"
              ng-click="changePlayType('mnt')"><center> Maintenance </center></div>
-        <!-- </div> -->
       </center>
       <ion-slide-box on-slide-changed="changeTypeSlide($index)" class='animated fadeInUp'
           show-pager='false' does-continue='false' delegate-handle='home-slide'>
@@ -46,13 +87,10 @@
           </ion-item>
         </ion-slide>
       </ion-slide-box>
-      <!-- <ion-item class='padding-vertical list-item margin animated fadeInUp' ng-click='openStartInfo()'> -->
-        <div class='row animated fadeInUp'>
-          <div class='col home-button button paper-button' ng-class="startTypeButton()" ng-click='start()'>PLAY</div>
-          <!-- <div class='col home-button button paper-button button-positive' ng-click='openStartInfo()'>MORE INFO</div> -->
-        </div>
-      <!-- </ion-item> -->
-    </div>
+      <div class='row animated fadeInUp'>
+        <div class='col home-button button paper-button' ng-class="startTypeButton()" ng-click='start()'>PLAY</div>
+      </div>
+    </div> -->
   </ion-content>
   <!-- <ion-footer-bar class='bar bar-footer bar-stable home-footer' ng-click="openStartInfo()">
     <button class="button button-positive col footer-button">PLAY</button>

@@ -1,6 +1,7 @@
 angular.module('ebi.controllers', [])
 
 .controller('DashCtrl', function($scope, $location, $rootScope, $ionicModal, $ionicSlideBoxDelegate, Categories, Preferences) {
+  $scope.infoModalType = 'acq';
 
   $ionicModal.fromTemplateUrl('templates/tutorial-modal.html', {
     scope: $scope,
@@ -16,6 +17,14 @@ angular.module('ebi.controllers', [])
     $scope.startInfoModal = modal;
   });
 
+  $scope.typeToName = function(type){
+    if(type == 'acq'){
+      return 'ACQUISITION';
+    } else {
+      return 'MAINTENANCE';
+    }
+  };
+
   $scope.openTutorial = function() {
     $scope.activeSlide = 1;
     $scope.tutorialModal.show();
@@ -24,8 +33,9 @@ angular.module('ebi.controllers', [])
     $scope.tutorialModal.hide();
   };
 
-  $scope.openStartInfo = function() {
+  $scope.openStartInfo = function(type) {
     $scope.category = Categories.all()[Preferences.category()];
+    $scope.infoModalType = type;
     $scope.startInfoModal.show();
   };
   $scope.closeStartInfo = function() {
@@ -38,15 +48,15 @@ angular.module('ebi.controllers', [])
   };
 
   $scope.checkPlayType = function(type){
-    return type == Preferences.playType();
+    return type == $scope.infoModalType;
   };
 
   $scope.changePlayType = function(type){
-    if(type=='acq'){
-      $rootScope.getSlideDelegate('home-slide').slide(0);
-    } else {
-      $rootScope.getSlideDelegate('home-slide').slide(1);
-    }
+    // if(type=='acq'){
+    //   $rootScope.getSlideDelegate('home-slide').slide(0);
+    // } else {
+    //   $rootScope.getSlideDelegate('home-slide').slide(1);
+    // }
     Preferences.playType(type);
   };
 
@@ -58,13 +68,8 @@ angular.module('ebi.controllers', [])
     }
   };
 
-  $scope.playStartHeader = function(){
-    if(Preferences.playType() == 'acq'){
-      return 'ACQUISITION';
-    } else {
-      return 'MAINTENANCE';
-    }
-  };
+
+
   $scope.startTypeButton = function(){
     if(Preferences.playType() == 'acq'){
       return 'button-royal';
@@ -73,6 +78,13 @@ angular.module('ebi.controllers', [])
     }
   };
 
+  $scope.setRadioClass = function(type){
+    if(Preferences.playType() == type){
+      return 'ion-android-radio-button-on';
+    } else {
+      return 'ion-android-radio-button-off';
+    }
+  };
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {

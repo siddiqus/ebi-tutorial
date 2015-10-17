@@ -16,7 +16,6 @@ angular.module('ebi.controllers')
     return array;
   };
 
-
   $scope.resetPlay = function(){
     $scope.pretest = false;
     $scope.questions = Questions.training(0);
@@ -52,8 +51,8 @@ angular.module('ebi.controllers')
       }
     }
 
-    $scope.correctAnswers = 22;
-    $scope.testAnswered = 22;
+    // $scope.correctAnswers = 22;
+    // $scope.testAnswered = 22;
 
     $rootScope.getSlideDelegate('play-slide').slide(0);
     $rootScope.getSlideDelegate('play-slide').update();

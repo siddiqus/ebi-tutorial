@@ -245,3 +245,23 @@ ion-item {
 .button-light {
   color: white !important;
 }
+
+.home-radio-button {
+  /*margin: 0 0.5em !important;*/
+  text-align: left;
+  font-size: 1.4em;
+}
+
+.home-radio-button .btn {
+  /*font-size: 1.4em;*/
+}
+
+.home-button-info {
+  margin-left: 0.3em !important;
+}
+
+.home-button-info .ion-ios-information {
+  /*color: royalblue;*/
+  padding: 0 !important;
+  font-size: 1.8em;
+}
