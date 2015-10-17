@@ -1,6 +1,6 @@
 <ion-view class="animated fadeIn">
-  <ion-nav-bar>
-  </ion-nav-bar>
+
+  <ion-nav-title>{{roundDisplay()}}</ion-nav-title>
 
   <ion-nav-buttons side="right">
     <button class="button button-royal button-hover" ng-class='startTypeButton()' ng-click="backToHome()">
@@ -8,18 +8,11 @@
     </button>
   </ion-nav-buttons>
 
-  <ion-header-bar class="bar bar-stable bar-royal">
-    <h1 class='title'><center>{{roundDisplay()}}</center></h1>
-  </ion-header-bar>
-
   <ion-header-bar
     style="font-size: 1.5em; text-align:center; padding-top: 0.5em"
     class='bar-subheader light-gray-background'>
     {{playHeader()}}: {{stateAnswerCount()}} / {{maxAnswerCount()}}</ion-header-bar>
-  <!-- <ion-header-bar
-    style="line-height: normal; font-weight: bold; font-size: 1.6em; text-align:center;"
-    class='bar-subheader bar-stable bar-balanced'>
-    PLAY </ion-header-bar> -->
+
   <ion-content class="home-page light-purple-bg" direction='y'>
     <ion-slide-box disable-scroll="true" show-pager='false' delegate-handle='play-slide'>
       <ion-slide ng-repeat="question in questions" class='answer-boxes animated fadeIn'>

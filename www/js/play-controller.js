@@ -51,6 +51,10 @@ angular.module('ebi.controllers')
         $scope.questions[i].answered = null;
       }
     }
+
+    $scope.correctAnswers = 22;
+    $scope.testAnswered = 22;
+
     $rootScope.getSlideDelegate('play-slide').slide(0);
     $rootScope.getSlideDelegate('play-slide').update();
   };
