@@ -1,36 +1,60 @@
-<ion-view>
+<ion-view view-title="HOME">
   <!-- <ion-nav-bar class="bar-stable bar-positive" align-title="center">
   </ion-nav-bar> -->
-  <ion-header-bar class="bar-stable bar-royal under-shadow" align-title="center">
-    <h1 class='title'><b> HOME </b> </h1>
-  </ion-header-bar>
+
+
+  <ion-nav-buttons side="left">
+    <span class="button button-clear button-light icon-left" ng-click="openInfoModal()">
+      <i class="icon ion-ios-information-outline"></i>
+    </span>
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="right">
+    <span class="button button-clear button-light" ng-click="openTutorial()">
+      <i class="icon ion-ios-help-outline"></i>
+    </span>
+  </ion-nav-buttons>
 
   <ion-header-bar
       style="font-size: 1.5em; height: 3em; text-align:center; padding-top:1em"
       class='bar-subheader bar-stable'>
       Equivalence Based Instruction
   </ion-header-bar>
-  <ion-content class="padding home-page light-purple-bg" scroll='false'>
-    <br></br>
-    <br></br>
-    <div class='home-buttons'>
-      <div>
-        <button class="animated fadeInUp button button-positive home-button card" ng-click='openStartInfo()'>
-            <b> PLAY </b> &nbsp; <i class='ion-play'></i>
-        </button>
+  <ion-content class="light-purple-bg">
+    <ion-list class='play-start-info-list'>
+      <br/>
+      <div class="row play-type-nav">
+        <div class="col bar-btn"
+           ng-class="{active: checkPlayType('acq')}"
+           ng-click="changePlayType('acq')"><center> Acquisition </center> </div>
+        <div class="col bar-btn"
+           ng-class="{active: checkPlayType('mnt')}"
+           ng-click="changePlayType('mnt')"><center> Maintenance </center></div>
       </div>
-      <br>
-      <!-- <div>
-        <button class="animated fadeInUp button button-balanced home-button card" ng-click='pretest()'>
-            <b> PRE-TEST </b> &nbsp; <i class='ion-play'></i>
-        </button>
+      <ion-slide-box on-slide-changed="changeTypeSlide($index)"
+          show-pager='false' does-continue='false' delegate-handle='home-slide'>
+        <ion-slide>
+          <ion-item class='padding-vertical start-info list-item margin'>
+            First, you will be given a pretest with all possible questions to assess your knowledge. Then you will be given a series of trainings and tests.
+          </ion-item>
+        </ion-slide>
+        <ion-slide>
+          <ion-item class='padding-vertical start-info list-item margin'>
+            TODO
+          </ion-item>
+        </ion-slide>
+      </ion-slide-box>
+      <!-- <div ng-if="checkPlayType('acq')">
+        <ion-item class='padding-vertical start-info list-item margin'>
+          First, you will be given a pretest with all possible questions to assess your knowledge. Then you will be given a series of trainings and tests.
+        </ion-item>
       </div>
-      <br> -->
-      <div>
-        <button class="animated fadeInUp button button-calm home-button card" ng-click="openTutorial()">
-            <b> TUTORIAL </b> &nbsp; <i class='ion-help-circled'></i>
-        </button>
+      <div ng-if="checkPlayType('mnt')">
+        <ion-item class='list-item'> TODO </ion-item>
       </div>
-    </div>
+    </ion-list> -->
   </ion-content>
+  <ion-footer-bar class='bar bar-footer bar-stable home-footer' ng-click="openStartInfo()">
+    <button class="button button-positive col footer-button">PLAY</button>
+  </ion-footer-bar>
 </ion-view>

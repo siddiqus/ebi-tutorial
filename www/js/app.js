@@ -7,8 +7,19 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('ebi', ['ionic', 'ebi.controllers', 'ebi.services'])
 
-.run(function($ionicPlatform, $state, $rootScope) {
+.run(function($ionicPlatform, $state, $ionicSlideBoxDelegate, $rootScope) {
   $rootScope.chosenCategory = 0;
+  $rootScope.playType = 'acq';
+
+  $rootScope.getSlideDelegate = function(handle){
+    var ins = $ionicSlideBoxDelegate._instances;
+    for(var i =0;i<ins.length;i++){
+      if(ins[i].$$delegateHandle == handle){
+        return ins[i];
+      }
+    }
+  };
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)

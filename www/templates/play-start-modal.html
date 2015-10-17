@@ -10,20 +10,37 @@
    class='bar-subheader bar-stable'>
    {{category.name}}
  </ion-header-bar>
- <br></br>
- <ion-content class='padding light-purple-bg item-list'>
-   <br/>
-   <ion-item class='padding-vertical start-info list-item'>
-     First, you will be given a pretest with all possible questions to assess your knowledge. Then you will be given a series of trainings and tests.
-   </ion-item>
-   <ion-item class='padding-vertical start-info list-item'>
-     To complete one Training round, you must choose correctly 12 times in a row. Otherwise, you will be taken back to the beginning of the training.
-   </ion-item>
-   <ion-item class='padding-vertical start-info list-item'>
-     If you fail any of the tests after the Pretest, you will be brought back to the initial training.
-   </ion-item>
-   <center class='home-buttons'>
-     <button ng-click="start()" class='col button button-royal card'><b>START</b></button>
-   </center>
+
+ <ion-content class='light-purple-bg item-list'>
+   <ion-list class='play-start-info-list'>
+     <br/>
+     <!-- <div class="row play-type-nav">
+       <div class="col bar-btn"
+          ng-class="{active: checkPlayType('acq')}"
+          ng-click="changePlayType('acq')"><center> Acquisition </center> </div>
+       <div class="col bar-btn"
+          ng-class="{active: checkPlayType('mnt')}"
+          ng-click="changePlayType('mnt')"><center> Maintenance </center></div>
+     </div> -->
+     <div ng-if="checkPlayType('acq')">
+       <ion-item class='padding-vertical start-info list-item margin'>
+         First, you will be given a pretest with all possible questions to assess your knowledge. Then you will be given a series of trainings and tests.
+       </ion-item>
+       <ion-item class='padding-vertical start-info list-item margin'>
+         To complete one Training round, you must choose correctly 12 times in a row. Otherwise, you will be taken back to the beginning of the training.
+       </ion-item>
+       <ion-item class='padding-vertical start-info list-item margin'>
+         If you fail any of the tests after the Pretest, you will be brought back to the initial training.
+       </ion-item>
+     </div>
+     <div ng-if="checkPlayType('mnt')">
+       <ion-item class='list-item'> TODO </ion-item>
+     </div>
+   </ion-list>
  </ion-content>
+ <ion-footer-bar class='bar bar-footer bar-royal play-start-footer' ng-click="start()">
+   <button class="button button-clear"></button>
+   <div class='title'> <b> BEGIN </b> </div>
+   <button class="button button-clear"></button>
+ </ion-footer-bar>
 </ion-modal-view>

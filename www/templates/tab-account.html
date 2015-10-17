@@ -1,4 +1,4 @@
-<ion-view >
+<ion-view view-title='SETTINGS'>
   <!-- <ion-nav-bar class="bar-stable bar-positive" align-title="center">
     <ion-nav-back-button>
     </ion-nav-back-button>
@@ -10,20 +10,27 @@
     Categories
   </ion-header-bar> -->
 
-  <ion-header-bar class="bar-stable bar-royal" align-title="center">
-    <h1 class='title'><b> SETTINGS </b> </h1>
-  </ion-header-bar>
+  <ion-nav-buttons side="left">
+    <span class="button button-clear button-light icon-left" ng-click="openInfoModal()">
+      <i class="icon ion-ios-information-outline"></i>
+    </span>
+  </ion-nav-buttons>
+
+  <!-- <ion-nav-buttons side="right">
+    <span class="button button-clear button-light" ng-click="openTutorial()">
+      <i class="icon ion-ios-help-outline"></i>
+    </span>
+  </ion-nav-buttons> -->
+
 
   <ion-header-bar
     style="font-size: 1.5em; height: 3em; text-align:center; padding-top: 1em"
     class='bar-subheader bar-stable gray-background'>
     Categories </ion-header-bar>
 
-  <ion-content class='padding light-purple-bg'>
-
-    <ion-list>
-      <br>
-      <ion-item ng-repeat="category in categories" class='animated fadeInUp list-item padding' ng-click="chooseCategory(category.id)">
+  <ion-content class='light-purple-bg'>
+    <ion-list class='padding'>
+      <ion-item ng-repeat="category in categories" class='margin animated fadeInUp list-item padding' ng-click="chooseCategory(category.id)">
         <!-- <ion-radio ng-model="chosenCategory" ng-class="setRadioClass(category.id)">{{category.name}}</ion-radio> -->
         <div class='row'>
           <div class='col col-80' style='font-size:1.2em;'> {{category.name}} </div>

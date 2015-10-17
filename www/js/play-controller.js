@@ -1,5 +1,5 @@
 angular.module('ebi.controllers')
-.controller('PlayCtrl', function($scope, $stateParams, $location, $ionicPopup, $ionicSlideBoxDelegate, Questions) {
+.controller('PlayCtrl', function($scope, $rootScope, $stateParams, $location, $ionicPopup, $ionicSlideBoxDelegate, Questions) {
 
   // HELPER Methods
   $scope.randomNumber = function(){
@@ -54,8 +54,6 @@ angular.module('ebi.controllers')
     $ionicSlideBoxDelegate.slide(0);
     $ionicSlideBoxDelegate.update();
   };
-
-  $scope.resetToPretest();
 
   // text for game header
   $scope.roundDisplay = function(){
@@ -216,6 +214,43 @@ angular.module('ebi.controllers')
     }
   }
 
+  $scope.nextMaintenancePlayState = function(){
+    if($scope.trainingRound == 0){
+      $scope.playState = 'Training';
+      $scope.trainingRound = 1;
+      $scope.questions = Questions.training(1);
+    } else if ($scope.trainingRound == 1){
+      $scope.playState = 'Test';
+      $scope.testRound = 5;
+      $scope.questions = Questions.testing([0,1,2,3]);
+    } else {
+      $scope.maintenanceComplete = true;
+    }
+
+    if($scope.maintenanceComplete){
+      var maintenanceCompletePopup = $ionicPopup.alert({
+        template: "<center><h3>Congratulations! <br> You have completed the tutorial.</h3></center>",
+        buttons: [
+          {
+            type:'button-positive',
+            text:'Back to Home',
+            onTap: function(){
+              $scope.resetToPretest();
+              $location.path('tab.dash');
+            }
+          }
+        ]
+      });
+    } else {
+      $scope.correctAnswers = 0;
+      $scope.testAnswered = 0;
+      var nextStatePopup = $ionicPopup.alert({
+        template: "<center><h3>Great! Tap OK to start the next " + $scope.playState + " round.</h3></center>"
+      });
+      $ionicSlideBoxDelegate.update();
+    }
+  };
+
   $scope.processFailedState = function(){
     for(var i=0;i<$scope.questions.length;i++){
       $scope.questions[i].answered = null;
@@ -332,4 +367,13 @@ angular.module('ebi.controllers')
     }
   };
 
+  if($rootScope.playType == 'mnt'){
+    $scope.resetPlay();
+  } else {
+    $scope.resetToPretest();
+  };
+
+  $scope.checkPlayType = function(type){
+    return type == $rootScope.playType;
+  };
 });

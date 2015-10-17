@@ -1,6 +1,6 @@
 angular.module('ebi.controllers', [])
 
-.controller('DashCtrl', function($scope, $location, $rootScope, $ionicModal, Categories) {
+.controller('DashCtrl', function($scope, $location, $rootScope, $ionicModal, $ionicSlideBoxDelegate, Categories) {
 
   $ionicModal.fromTemplateUrl('templates/tutorial-modal.html', {
     scope: $scope,
@@ -37,6 +37,28 @@ angular.module('ebi.controllers', [])
     $scope.closeStartInfo();
     $location.path('play');
   };
+
+  $scope.checkPlayType = function(type){
+    return type == $rootScope.playType;
+  };
+
+  $scope.changePlayType = function(type){
+    if(type=='acq'){
+      $rootScope.getSlideDelegate('home-slide').slide(0);
+    } else {
+      $rootScope.getSlideDelegate('home-slide').slide(1);
+    }
+    $rootScope.playType = type;
+  };
+
+  $scope.changeTypeSlide = function(index){
+    if(index==0){
+      $rootScope.playType = 'acq';
+    } else {
+      $rootScope.playType = 'mnt';
+    }
+  }
+
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {

@@ -45,7 +45,6 @@ ion-header-bar .buttons button {
 .start-info {
   font-size: 1.1em;
   line-height: normal;
-  margin: 0.5em 0em;
 }
 
 .purple-bg {
@@ -183,4 +182,21 @@ ion-item {
 
 .tutorial-content {
   margin-top: 0.5em;
+}
+
+.play-start-info-list .bar-btn {
+  font-size: 1.2em !important;
+}
+
+.margin {
+  margin: 0.5em !important;
+}
+
+.home-footer .footer-button {
+  font-size: 1.2em;
+}
+
+.play-type-nav .active {
+  background-color: #387EF5;
+  color: white;
 }
