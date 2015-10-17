@@ -14,7 +14,33 @@ angular.module('ebi.services', [])
     };
 })
 
+.factory('Preferences', function($rootScope){
+  var preferences = {};
+  preferences.category = 0;
+  preferences.playType = 'acq';
 
+  return {
+    all: function() {
+      return preferences;
+    },
+    category: function(cat) {
+      if(cat != null){
+        preferences.category = cat;
+        // $rootScope.chosenCategory = cat;
+      } else {
+        return preferences.category;
+      }
+    },
+    playType: function(type) {
+      if(type != null){
+        preferences.playType = type;
+        // $rootScope.playType = type;
+      } else {
+        return preferences.playType;
+      }
+    }
+  }
+})
 .factory('Questions', function(){
   var choices = [
     {a: 'img/A1.bmp', b: 'img/A2.bmp', c: 'img/A3.bmp', d: 'img/A4.bmp' },

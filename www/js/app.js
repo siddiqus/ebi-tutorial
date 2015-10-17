@@ -7,9 +7,9 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('ebi', ['ionic', 'ebi.controllers', 'ebi.services'])
 
-.run(function($ionicPlatform, $state, $ionicSlideBoxDelegate, $rootScope) {
-  $rootScope.chosenCategory = 0;
-  $rootScope.playType = 'acq';
+.run(function($ionicPlatform, $state, $ionicSlideBoxDelegate, $rootScope, Preferences) {
+  $rootScope.chosenCategory = Preferences.category();
+  $rootScope.playType = Preferences.playType();
 
   $rootScope.getSlideDelegate = function(handle){
     var ins = $ionicSlideBoxDelegate._instances;

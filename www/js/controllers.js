@@ -1,6 +1,6 @@
 angular.module('ebi.controllers', [])
 
-.controller('DashCtrl', function($scope, $location, $rootScope, $ionicModal, $ionicSlideBoxDelegate, Categories) {
+.controller('DashCtrl', function($scope, $location, $rootScope, $ionicModal, $ionicSlideBoxDelegate, Categories, Preferences) {
 
   $ionicModal.fromTemplateUrl('templates/tutorial-modal.html', {
     scope: $scope,
@@ -24,9 +24,8 @@ angular.module('ebi.controllers', [])
     $scope.tutorialModal.hide();
   };
 
-
   $scope.openStartInfo = function() {
-    $scope.category = Categories.all()[$rootScope.chosenCategory];
+    $scope.category = Categories.all()[Preferences.category()];
     $scope.startInfoModal.show();
   };
   $scope.closeStartInfo = function() {
@@ -39,7 +38,7 @@ angular.module('ebi.controllers', [])
   };
 
   $scope.checkPlayType = function(type){
-    return type == $rootScope.playType;
+    return type == Preferences.playType();
   };
 
   $scope.changePlayType = function(type){
@@ -48,16 +47,31 @@ angular.module('ebi.controllers', [])
     } else {
       $rootScope.getSlideDelegate('home-slide').slide(1);
     }
-    $rootScope.playType = type;
+    Preferences.playType(type);
   };
 
   $scope.changeTypeSlide = function(index){
     if(index==0){
-      $rootScope.playType = 'acq';
+      Preferences.playType('acq');
     } else {
-      $rootScope.playType = 'mnt';
+      Preferences.playType('mnt');
     }
-  }
+  };
+
+  $scope.playStartHeader = function(){
+    if(Preferences.playType() == 'acq'){
+      return 'ACQUISITION';
+    } else {
+      return 'MAINTENANCE';
+    }
+  };
+  $scope.startTypeButton = function(){
+    if(Preferences.playType() == 'acq'){
+      return 'button-royal';
+    } else {
+      return 'button-calm';
+    }
+  };
 
 })
 
@@ -81,16 +95,16 @@ angular.module('ebi.controllers', [])
 })
 
 
-.controller('AccountCtrl', function($scope, $stateParams, $rootScope, $location, Categories) {
+.controller('AccountCtrl', function($scope, $stateParams, $rootScope, $location, Categories, Preferences) {
   $scope.categories = Categories.all();
   $scope.setRadioClass = function(id){
-    if($rootScope.chosenCategory == id){
+    if(Preferences.category() == id){
       return 'ion-android-radio-button-on';
     } else {
       return 'ion-android-radio-button-off';
     }
   };
   $scope.chooseCategory = function(id) {
-    $rootScope.chosenCategory = id;
-  }
+    Preferences.category(id);
+  };
 });

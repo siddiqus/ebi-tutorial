@@ -21,40 +21,38 @@
       Equivalence Based Instruction
   </ion-header-bar>
   <ion-content class="light-purple-bg">
-    <ion-list class='play-start-info-list'>
-      <br/>
-      <div class="row play-type-nav">
+    <div class='play-start-info-list'>
+      <br></br>
+      <div class="row play-type-nav animated fadeInUp">
         <div class="col bar-btn"
-           ng-class="{active: checkPlayType('acq')}"
+           ng-class="{acqActive: checkPlayType('acq')}"
            ng-click="changePlayType('acq')"><center> Acquisition </center> </div>
         <div class="col bar-btn"
-           ng-class="{active: checkPlayType('mnt')}"
+           ng-class="{mntActive: checkPlayType('mnt')}"
            ng-click="changePlayType('mnt')"><center> Maintenance </center></div>
       </div>
-      <ion-slide-box on-slide-changed="changeTypeSlide($index)"
+      <ion-slide-box on-slide-changed="changeTypeSlide($index)" class='animated fadeInUp'
           show-pager='false' does-continue='false' delegate-handle='home-slide'>
-        <ion-slide>
+        <ion-slide class='home-slide'>
           <ion-item class='padding-vertical start-info list-item margin'>
-            First, you will be given a pretest with all possible questions to assess your knowledge. Then you will be given a series of trainings and tests.
+            The Acquisition Mode consists of a pretest, followed by a series of alternating Training and Test sessions, and a cumulative post Test.
           </ion-item>
         </ion-slide>
-        <ion-slide>
+        <ion-slide class='home-slide'>
           <ion-item class='padding-vertical start-info list-item margin'>
-            TODO
+            The Maintenance Mode consists of the same Training sessions as the Acquisition Mode, and the cumulative post Test.
           </ion-item>
         </ion-slide>
       </ion-slide-box>
-      <!-- <div ng-if="checkPlayType('acq')">
-        <ion-item class='padding-vertical start-info list-item margin'>
-          First, you will be given a pretest with all possible questions to assess your knowledge. Then you will be given a series of trainings and tests.
-        </ion-item>
-      </div>
-      <div ng-if="checkPlayType('mnt')">
-        <ion-item class='list-item'> TODO </ion-item>
-      </div>
-    </ion-list> -->
+      <!-- <ion-item class='padding-vertical list-item margin animated fadeInUp' ng-click='openStartInfo()'> -->
+        <div class='row animated fadeInUp'>
+          <div class='col home-button button' ng-class="startTypeButton()" ng-click='start()'>PLAY</div>
+          <div class='col home-button button button-positive' ng-click='openStartInfo()'>MORE INFO</div>
+        </div>
+      <!-- </ion-item> -->
+    </div>
   </ion-content>
-  <ion-footer-bar class='bar bar-footer bar-stable home-footer' ng-click="openStartInfo()">
+  <!-- <ion-footer-bar class='bar bar-footer bar-stable home-footer' ng-click="openStartInfo()">
     <button class="button button-positive col footer-button">PLAY</button>
-  </ion-footer-bar>
+  </ion-footer-bar> -->
 </ion-view>
