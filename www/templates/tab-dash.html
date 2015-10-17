@@ -22,16 +22,16 @@
   </ion-header-bar>
   <ion-content class="light-purple-bg">
     <div class='play-start-info-list'>
-      <br></br>
-      <center>
-        <div class="row play-type-nav animated fadeInUp light-padding">
-          <div class="col bar-btn"
+      <br/>
+      <center class='row'>
+        <!-- <div class="row play-type-nav animated fadeInUp"> -->
+          <div class="col bar-btn paper-button padding"
              ng-class="{acqActive: checkPlayType('acq')}"
              ng-click="changePlayType('acq')"><center> Acquisition </center> </div>
-          <div class="col bar-btn"
+          <div class="col bar-btn paper-button padding"
              ng-class="{mntActive: checkPlayType('mnt')}"
              ng-click="changePlayType('mnt')"><center> Maintenance </center></div>
-        </div>
+        <!-- </div> -->
       </center>
       <ion-slide-box on-slide-changed="changeTypeSlide($index)" class='animated fadeInUp'
           show-pager='false' does-continue='false' delegate-handle='home-slide'>
@@ -49,7 +49,7 @@
       <!-- <ion-item class='padding-vertical list-item margin animated fadeInUp' ng-click='openStartInfo()'> -->
         <div class='row animated fadeInUp'>
           <div class='col home-button button paper-button' ng-class="startTypeButton()" ng-click='start()'>PLAY</div>
-          <div class='col home-button button paper-button button-positive' ng-click='openStartInfo()'>MORE INFO</div>
+          <!-- <div class='col home-button button paper-button button-positive' ng-click='openStartInfo()'>MORE INFO</div> -->
         </div>
       <!-- </ion-item> -->
     </div>
