@@ -30,9 +30,9 @@ body, button, ion-content, ion-header-bar, .bar-subheader, .bar-stable, .popup {
 
 ion-header-bar .buttons button {
   border: 0 !important;
-  box-shadow: 0px 1px 3px 0px #5D5050 !important;
-  -webkit-box-shadow: 0px 1px 3px 0px #5D5050 !important;
-  -moz-box-shadow: 0px 1px 3px 0px #5D5050 !important;
+  box-shadow: 0px 1px 3px 0px #361D86 !important;
+  -webkit-box-shadow: 0px 1px 3px 0px #361D86 !important;
+  -moz-box-shadow: 0px 1px 3px 0px #361D86 !important;
 }
 
 .bar-stable, .bar-subheader {
@@ -73,7 +73,7 @@ ion-content, .light-gray-background {
 .home-button {
   /*padding: 0.5em;*/
   color: white !important;
-  font-size: 1.2em;
+  font-size: 1.5em;
   /*font-weight: bold;*/
   display: block !important;
   box-shadow: 1px 1px 2px 0px gray !important;
@@ -292,3 +292,21 @@ ion-item {
 .no-border {
   border: 0;
 }
+
+.positive-bg {
+  color: white;
+}
+
+.bar-royal, .button-royal, .royal-bg, .tabs-royal .tab-nav  {
+  background-color: #6E57B5 !important;
+  /*#6A52B7 - dark 1*/
+  /*#5231B9 - dark 2*/
+}
+
+.button-royal {
+
+}
+
+/*.tabs-striped {
+  border: 0 !important;
+}*/

@@ -8,6 +8,7 @@
 angular.module('ebi', ['ionic', 'ebi.controllers', 'ebi.services'])
 
 .run(function($ionicPlatform, $state, $ionicLoading, $ionicSlideBoxDelegate, $rootScope, Preferences) {
+  
   $rootScope.chosenCategory = Preferences.category();
   $rootScope.playType = Preferences.playType();
 
