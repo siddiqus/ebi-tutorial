@@ -24,26 +24,26 @@
         <center>Select a Tutorial Type</center>
       </ion-item>
 
-      <div class='margin animated fadeInUp'>
-        <div class='row'>
-          <button class='item paper-button padding home-radio-button col col-80' ng-click="changePlayType('acq')">
+      <div class='animated fadeInUp type-select'>
+        <div class='flex-row'>
+          <button class='item padding paper-button home-radio-button' ng-click="changePlayType('acq')">
             <span class='btn'><i ng-class="setRadioClass('acq')"></i> &nbsp;</span>
             <span class='text'> ACQUISITION </span>
           </button>
-          <button class='item button button-positive paper-button col col-15 home-button-info' ng-click='openStartInfo("acq")'>
-            <center><i class='icon ion-ios-information-outline'></i></center>
+          <button class='item button button-positive paper-button home-button-info' ng-click='openStartInfo("acq")'>
+            <span><center><i class='icon ion-ios-information-outline'></i></center></span>
           </button>
         </div>
       </div>
-      <div class='margin animated fadeInUp'>
-        <div class='row'>
-          <button class='item paper-button padding home-radio-button col col-80' ng-click="changePlayType('mnt')">
+      <div class='animated fadeInUp type-select'>
+        <div class='flex-row'>
+          <button class='item paper-button padding home-radio-button' ng-click="changePlayType('mnt')">
             <span class='btn'><i ng-class="setRadioClass('mnt')"></i> &nbsp;</span>
             <span class='text'> MAINTENANCE </span>
           </button>
-          <div class='item button button-positive paper-button col col-15 home-button-info' ng-click='openStartInfo("mnt")'>
+          <button class='item button button-positive paper-button home-button-info' ng-click='openStartInfo("mnt")'>
             <center><i class='icon ion-ios-information-outline'></i></center>
-          </div>
+          </button>
         </div>
       </div>
       <div class='row animated fadeInUp'>

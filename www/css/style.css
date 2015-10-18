@@ -38,9 +38,9 @@ ion-header-bar .buttons button {
 .bar-stable, .bar-subheader {
   /*border: 0px;*/
   color: #444 !important;
-  box-shadow:           0px -1px 12px 0px gray !important;
-  -webkit-box-shadow:   0px -1px 12px 0px gray !important;
-  -moz-box-shadow:      0px -1px 12px 0px gray !important;
+  box-shadow:           0px -1px 8px 0px gray !important;
+  -webkit-box-shadow:   0px -1px 8px 0px gray !important;
+  -moz-box-shadow:      0px -1px 8px 0px gray !important;
 }
 
 .start-info {
@@ -245,14 +245,16 @@ ion-item {
   /*margin: 0 0.5em !important;*/
   text-align: left;
   font-size: 1.4em;
-}
-
-.home-radio-button .btn {
-  /*font-size: 1.4em;*/
+  width: 85%
 }
 
 .home-button-info {
+  width: 15%;
   margin-left: 0.3em !important;
+}
+
+.type-select {
+  margin: 1em 0.7em !important;
 }
 
 .home-button-info .ion-ios-information {
