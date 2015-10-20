@@ -40,6 +40,7 @@ angular.module('ebi.controllers')
   };
 
   $scope.resetToPretest = function(){
+    Preferences.playType('acq');
     $scope.pretest = true;
     $scope.trainingRound = 0;
     $scope.testRound = 5;
@@ -49,25 +50,6 @@ angular.module('ebi.controllers')
     $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
     $scope.programComplete = false;
     $scope.questions = Questions.testing([0,1,2,3]);
-    if($scope.questions){
-      for(var i=0;i<$scope.questions.length;i++){
-        $scope.questions[i].answered = null;
-      }
-    }
-    $rootScope.getSlideDelegate('play-slide').slide(0);
-    $rootScope.getSlideDelegate('play-slide').update();
-  };
-
-  $scope.resetToTutorial = function(){
-    $scope.pretest = false;
-    $scope.trainingRound = 0;
-    $scope.testRound = 0;
-    $scope.playState = 'Training';
-    $scope.correctAnswers = 0;
-    $scope.testAnswered = 0;
-    $scope.randomAnswers = $scope.shuffleArray(['a','b']);
-    $scope.programComplete = false;
-    $scope.questions = Questions.tutorialTraining(0);
     if($scope.questions){
       for(var i=0;i<$scope.questions.length;i++){
         $scope.questions[i].answered = null;
@@ -421,21 +403,6 @@ angular.module('ebi.controllers')
 
   $scope.checkPlayType = function(type){
     return type == Preferences.playType();
-  };
-
-  $scope.barTypeColor = function(){
-    if(Preferences.playType() == 'acq'){
-      return 'bar-royal';
-    } else {
-      return 'bar-calm';
-    }
-  };
-  $scope.startTypeButton = function(){
-    if(Preferences.playType() == 'acq'){
-      return 'button-royal';
-    } else {
-      return 'button-calm';
-    }
   };
 
   $scope.$on('$stateChangeSuccess', function() {

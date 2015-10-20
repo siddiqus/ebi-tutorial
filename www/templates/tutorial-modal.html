@@ -6,7 +6,7 @@
    </div>
  </ion-header-bar>
  <ion-content class="card padding tutorial-content">
-   <ion-slide-box does-continue="true" on-slide-changed="slideHasChanged($index)" show-pager='false'>
+   <ion-slide-box does-continue="true" on-slide-changed="slideHasChanged($index)" delegate-handle='tutorial-slide' show-pager='false'>
     <ion-slide>
       <div><h2>Step 1</h2></div>
     </ion-slide>
@@ -15,10 +15,10 @@
     </ion-slide>
     <ion-slide>
       <div><h1>Step 3</h1></div>
-      <div class='row animated fadeInUp'>
-        <div class='col home-button button button-royal' ng-click='startTutorial()'>START TUTORIAL</div>
-      </div>
     </ion-slide>
   </ion-slide-box>
  </ion-content>
+ <ion-footer-bar class='bar bar-footer bar-royal' ng-click='startTutorial()'>
+     <h1 class='title'>START TUTORIAL</h1>
+ </ion-footer-bar>
 </ion-modal-view>

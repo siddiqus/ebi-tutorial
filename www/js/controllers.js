@@ -18,10 +18,10 @@ angular.module('ebi.controllers', [])
   });
 
   $scope.openTutorial = function() {
-    $scope.activeSlide = 1;
     $scope.tutorialModal.show();
   };
   $scope.closeTutorial = function() {
+    $rootScope.getSlideDelegate('tutorial-slide').slide(0);
     $scope.tutorialModal.hide();
   };
 
@@ -58,7 +58,7 @@ angular.module('ebi.controllers', [])
   $scope.startTutorial = function(){
     Preferences.playType('tut');
     $scope.closeTutorial();
-    $scope.start();
+    $location.path('tutorial');
   };
 })
 
