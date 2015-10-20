@@ -5,20 +5,80 @@
      <button class="button button-royal" ng-click="closeTutorial()"><b>Close</b></button>
    </div>
  </ion-header-bar>
- <ion-content class="card padding tutorial-content">
-   <ion-slide-box does-continue="true" on-slide-changed="slideHasChanged($index)" delegate-handle='tutorial-slide' show-pager='false'>
+ <ion-content class="card padding tutorial-content light-purple-bg">
+   <ion-slide-box does-continue="true" on-slide-changed="slideHasChanged($index)" pager-click="pagerClicked(index)"
+    delegate-handle='tutorial-slide' show-pager='true'>
     <ion-slide>
-      <div><h2>Step 1</h2></div>
+      <ion-item class='light-purple-bg padding no-border'>
+        <center>Welcome to the Equivalence Based Instruction Program Tutorial!</center>
+      </ion-item>
+      <hr></hr>
+      <ion-item class='light-purple-bg padding no-border'>
+        <span>The objective of this program is to learn new material through picture associations.</span>
+      </ion-item>
+
+      <ion-item class='light-purple-bg padding no-border'>
+        <span>You will be presented with a series of multiple choice questions for Training and corresponding Tests.</span>
+      </ion-item>
+
+      <ion-item class='light-purple-bg padding no-border'>
+        <span>You may not initially know the answers, but you will be expected to learn them through trial and error.</span>
+      </ion-item>
     </ion-slide>
     <ion-slide>
-      <div><h1>Step 2</h1></div>
+      <!-- <h4><center>Questions are multiple choice and have the following form:</center></h4> -->
+      <ion-item class='light-purple-bg padding no-border'>
+        <center>Questions have a form similar to the one shown below:</center>
+      </ion-item>
+      <div class='col'>
+        <center><img class='tutorial-img' ng-src='img/tut0.png'></img></center>
+      </div>
+      <br></br>
+      <br/>
     </ion-slide>
     <ion-slide>
-      <div><h1>Step 3</h1></div>
+      <ion-item class='positive-bg padding no-border'>
+        <center>The top image is the 'question'</center>
+      </ion-item>
+      <div class='col'>
+        <center><img class='tutorial-img' ng-src='img/tut1.png'></img></center>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class='col'>
+        <center><img class='tutorial-img' ng-src='img/tut2.png'></img></center>
+      </div>
+      <ion-item class='royal-bg padding no-border'>
+        <center>Answer choices are on the bottom</center>
+      </ion-item>
+    </ion-slide>
+    <ion-slide>
+      <ion-item class='light-purple-bg padding no-border'>
+        <center>For Training questions, tapping on an answer gives you feedback</center>
+      </ion-item>
+      <div class='col'>
+        <center><img class='tutorial-img' ng-src='img/tut3.png'></img></center>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <ion-item class='light-purple-bg padding no-border'>
+        <span>Test questions individually will not have any feedback, but you will receive a Pass/Fail notice at the end of the test.</span>
+      </ion-item>
+      <ion-item class='light-purple-bg padding no-border'>
+        <span>You must answer 90% of the Test questions correctly to move forward.</span>
+      </ion-item>
+      <ion-item class='light-purple-bg padding no-border'>
+        <span>Tap on the button below to begin a demo of the program.</span>
+      </ion-item>
+      <br/>
+      <div class='row'>
+        <div class='col home-button button button-royal' ng-click='startTutorial()'>START TUTORIAL</div>
+      </div>
     </ion-slide>
   </ion-slide-box>
+
  </ion-content>
- <ion-footer-bar class='bar bar-footer bar-royal' ng-click='startTutorial()'>
-     <h1 class='title'>START TUTORIAL</h1>
- </ion-footer-bar>
+ <!-- <ion-footer-bar class='bar bar-footer bar-royal' ng-click='startTutorial()'>
+       <h1 class='title'>START TUTORIAL</h1>
+ </ion-footer-bar> -->
 </ion-modal-view>

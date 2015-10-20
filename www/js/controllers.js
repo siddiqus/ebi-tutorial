@@ -60,6 +60,10 @@ angular.module('ebi.controllers', [])
     $scope.closeTutorial();
     $location.path('tutorial');
   };
+
+  $scope.pagerClicked = function(index){
+    $rootScope.getSlideDelegate('tutorial-slide').slide(index);
+  }
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {

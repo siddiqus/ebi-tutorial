@@ -49,7 +49,7 @@ angular.module('ebi.controllers')
   $scope.backToHome = function() {
     var confirmPopup = $ionicPopup.confirm({
       title: 'Back to Home',
-      template: "<center> Are you sure you want to exit the program? </center>"
+      template: "<center> Are you sure you want to exit the tutorial? </center>"
     }).then(function(res) {
       if(res) {
         Preferences.playType('acq');

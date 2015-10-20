@@ -16,7 +16,7 @@ angular.module('ebi.controllers')
     return array;
   };
 
-  $scope.notTutorial = function() {
+  $scope.not = function() {
     return Preferences.playType() != 'tut';
   }
 
@@ -227,7 +227,7 @@ angular.module('ebi.controllers')
     }
     if($scope.programComplete){
       var completePopup = $ionicPopup.alert({
-        template: "<center><h3>Congratulations! <br> You have completed the tutorial.</h3></center>",
+        template: "<center><h3>Congratulations! <br> You have completed the program.</h3></center>",
         buttons: [
           {
             type:'button-positive',
@@ -264,7 +264,7 @@ angular.module('ebi.controllers')
 
     if($scope.maintenanceComplete){
       var maintenanceCompletePopup = $ionicPopup.alert({
-        template: "<center><h3>Congratulations! <br> You have completed the tutorial.</h3></center>",
+        template: "<center><h3>Congratulations! <br> You have completed the program.</h3></center>",
         buttons: [
           {
             type:'button-positive',
@@ -390,7 +390,7 @@ angular.module('ebi.controllers')
       // if needed answer count is reached, go to the next state
     if($scope.testAnswered == 24){
       var pretestCompletePopup = $ionicPopup.alert({
-        template: "<center><h3>Pre-Test Complete! Press OK to start tutorial.</h3></center>"
+        template: "<center><h3>Pre-Test Complete! Press OK to start program.</h3></center>"
       }).then(function(){
         $scope.resetPlay();
       });
