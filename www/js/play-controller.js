@@ -16,6 +16,10 @@ angular.module('ebi.controllers')
     return array;
   };
 
+  $scope.notTutorial = function() {
+    return Preferences.playType() != 'tut';
+  }
+
   $scope.resetPlay = function(){
     $scope.pretest = false;
     $scope.questions = Questions.training(0);
@@ -50,10 +54,25 @@ angular.module('ebi.controllers')
         $scope.questions[i].answered = null;
       }
     }
+    $rootScope.getSlideDelegate('play-slide').slide(0);
+    $rootScope.getSlideDelegate('play-slide').update();
+  };
 
-    // $scope.correctAnswers = 22;
-    // $scope.testAnswered = 22;
-
+  $scope.resetToTutorial = function(){
+    $scope.pretest = false;
+    $scope.trainingRound = 0;
+    $scope.testRound = 0;
+    $scope.playState = 'Training';
+    $scope.correctAnswers = 0;
+    $scope.testAnswered = 0;
+    $scope.randomAnswers = $scope.shuffleArray(['a','b']);
+    $scope.programComplete = false;
+    $scope.questions = Questions.tutorialTraining(0);
+    if($scope.questions){
+      for(var i=0;i<$scope.questions.length;i++){
+        $scope.questions[i].answered = null;
+      }
+    }
     $rootScope.getSlideDelegate('play-slide').slide(0);
     $rootScope.getSlideDelegate('play-slide').update();
   };
@@ -118,6 +137,14 @@ angular.module('ebi.controllers')
   };
 
   $scope.maxAnswerCount = function(){
+    if(Preferences.playType() == 'tut'){
+      if($scope.playState == 'Training'){
+        return 4;
+      } else {
+        return 16;
+      }
+    }
+
     if($scope.playState == 'Training'){
       return 12;
     } else {
@@ -149,6 +176,14 @@ angular.module('ebi.controllers')
   };
 
   $scope.neededAnswerCount = function(){
+    if(Preferences.playType() == 'tut'){
+      if($scope.playState == 'Training'){
+        return 3;
+      } else {
+        return 14;
+      }
+    }
+
     if($scope.playState == 'Training'){
       return 11;
     } else {
@@ -164,6 +199,15 @@ angular.module('ebi.controllers')
   };
 
   $scope.nextPlayState = function(){
+    if(Preferences.playType == 'tut'){
+      if($scope.playState == 'Training'){
+        if($scope.trainingRound == 0){
+          $scope.trainingRound = 1;
+          // $scope.
+        }
+      }
+    }
+
     if($scope.playState == 'Training'){
       if($scope.trainingRound == 0 || $scope.trainingRound == 1){
         $scope.playState = 'Test';
@@ -397,13 +441,15 @@ angular.module('ebi.controllers')
   $scope.$on('$stateChangeSuccess', function() {
     if(Preferences.playType() == 'mnt'){
       $scope.resetPlay();
-    } else {
+    } else if (Preferences.playType() == 'acq'){
       $scope.resetToPretest();
-    };
+    } else {
+      $scope.resetToTutorial();
+    }
   });
 
   $scope.currentType = function(){
     return $rootScope.typeToName(Preferences.playType());
-  }
+  };
 
 });

@@ -42,10 +42,44 @@ angular.module('ebi.services', [])
   }
 })
 .factory('Questions', function(){
+  var tutorialAnswers = [
+    {a: 'img/Apple.bmp', b: 'img/Orange.bmp', c: '', d: ''}, // pics
+    {a: 'img/Ap1.bmp', b: 'img/Or1.bmp', c: '', d: ''}, // chinese
+    {a: 'img/Ap2.bmp', b: 'img/Or2.bmp', c: '', d: ''} // italian
+  ];
+  
+  var tutorialTraining = [
+    [
+      // pic to italian
+      {id: 0, q: 'img/Apple.bmp', opts: tutorialAnswers[2] , ans: 'a'},
+      {id: 1, q: 'img/Orange.bmp', opts: tutorialAnswers[2], ans: 'b'}
+    ],
+    [
+      // pic to chinese
+      {id: 0, q: 'img/Apple.bmp', opts: tutorialAnswers[1] , ans: 'a'},
+      {id: 1, q: 'img/Orange.bmp', opts: tutorialAnswers[1], ans: 'b'}
+    ]
+  ];
+
+  var tutorialTesting = [
+    // chinese to pic
+    {id: 0, q: 'img/Ap1.bmp', opts: tutorialAnswers[0] , ans: 'a'},
+    {id: 1, q: 'img/Or1.bmp', opts: tutorialAnswers[0], ans: 'b'},
+    // chinese to italian
+    {id: 2, q: 'img/Ap1.bmp', opts: tutorialAnswers[2] , ans: 'a'},
+    {id: 3, q: 'img/Or1.bmp', opts: tutorialAnswers[2], ans: 'b'},
+    // italian to chinese
+    {id: 4, q: 'img/Ap2.bmp', opts: tutorialAnswers[1] , ans: 'a'},
+    {id: 5, q: 'img/Or2.bmp', opts: tutorialAnswers[1], ans: 'b'},
+    // italian to pic
+    {id: 6, q: 'img/Ap2.bmp', opts: tutorialAnswers[0] , ans: 'a'},
+    {id: 7, q: 'img/Or2.bmp', opts: tutorialAnswers[0], ans: 'b'}
+  ];
+
   var choices = [
     {a: 'img/A1.bmp', b: 'img/A2.bmp', c: 'img/A3.bmp', d: 'img/A4.bmp' },
     {a: 'img/B1.bmp', b: 'img/B2.bmp', c: 'img/B3.bmp', d: 'img/B4.bmp' },
-    {a: 'img/C1.bmp', b: 'img/C2.bmp', c: 'img/C3.bmp', d: 'img/C4.bmp' },
+    {a: 'img/C1.bmp', b: 'img/C2.bmp', c: 'img/C3.bmp', d: 'img/C4.bmp' }
   ];
 
   var questions = [
@@ -102,8 +136,13 @@ angular.module('ebi.services', [])
         tests = tests.concat(questions[j]);
       }
       return tests;
+    },
+    tutorialTraining: function(round){
+      return tutorialTraining[round];
+    },
+    tutorialTesting: function(){
+      return tutorialTesting;
     }
-
   };
 })
 

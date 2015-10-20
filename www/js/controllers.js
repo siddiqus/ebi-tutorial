@@ -44,30 +44,7 @@ angular.module('ebi.controllers', [])
   };
 
   $scope.changePlayType = function(type){
-    // if(type=='acq'){
-    //   $rootScope.getSlideDelegate('home-slide').slide(0);
-    // } else {
-    //   $rootScope.getSlideDelegate('home-slide').slide(1);
-    // }
     Preferences.playType(type);
-  };
-
-  $scope.changeTypeSlide = function(index){
-    if(index==0){
-      Preferences.playType('acq');
-    } else {
-      Preferences.playType('mnt');
-    }
-  };
-
-
-
-  $scope.startTypeButton = function(){
-    if(Preferences.playType() == 'acq'){
-      return 'button-royal';
-    } else {
-      return 'button-calm';
-    }
   };
 
   $scope.setRadioClass = function(type){
@@ -76,6 +53,12 @@ angular.module('ebi.controllers', [])
     } else {
       return 'ion-android-radio-button-off';
     }
+  };
+
+  $scope.startTutorial = function(){
+    Preferences.playType('tut');
+    $scope.closeTutorial();
+    $scope.start();
   };
 })
 

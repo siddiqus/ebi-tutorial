@@ -8,15 +8,17 @@
 angular.module('ebi', ['ionic', 'ebi.controllers', 'ebi.services'])
 
 .run(function($ionicPlatform, $state, $ionicLoading, $ionicSlideBoxDelegate, $rootScope, Preferences) {
-  
+
   $rootScope.chosenCategory = Preferences.category();
   $rootScope.playType = Preferences.playType();
 
   $rootScope.typeToName = function(type){
     if(type == 'acq'){
       return 'ACQUISITION';
-    } else {
+    } else if (type == 'mnt') {
       return 'MAINTENANCE';
+    } else {
+      return 'TUTORIAL';
     }
   };
 
