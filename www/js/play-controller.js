@@ -96,24 +96,46 @@ angular.module('ebi.controllers')
     }
   };
 
-  $scope.pickNextTrainingQuestion = function(question){
-    while(true){
-      var newQuestion = $scope.randomNumber();
-      if (($scope.questions[newQuestion].answered == 3) || ($scope.questions[newQuestion].id == question.id) ){
-        continue;
-      } else {
-        return newQuestion;
-      }
-    }
-  };
+  // $scope.pickNextTrainingQuestion = function(question){
+  //   var count = 0;
+  //   var newQuestion = $scope.randomNumber();
+  //   while(count < 24){
+  //     if (($scope.questions[newQuestion].answered < 4) && ($scope.questions[newQuestion].id != question.id) ){
+  //       return newQuestion;
+  //     } else {
+  //       newQuestion = $scope.randomNumber();
+  //       continue;
+  //     }
+  //     if(count == 24){
+  //       count = 0;
+  //     }
+  //   }
+  // };
+  //
+  // $scope.pickNextTestQuestion = function(question){
+  //   while(true){
+  //     var newQuestion = $scope.randomNumber();
+  //     if (($scope.questions[newQuestion].answered == 2) || ($scope.questions[newQuestion].id == question.id) ){
+  //       continue;
+  //     } else {
+  //       return newQuestion;
+  //     }
+  //   }
+  // };
 
-  $scope.pickNextTestQuestion = function(question){
-    while(true){
-      var newQuestion = $scope.randomNumber();
-      if (($scope.questions[newQuestion].answered == 2) || ($scope.questions[newQuestion].id == question.id) ){
-        continue;
-      } else {
+  $scope.pickNextQuestion = function(question){
+    var maxCount = ($scope.playState == 'Training')? 4 : 3;
+    var count = 0;
+    var newQuestion = $scope.randomNumber();
+    while(count < 24){
+      if (($scope.questions[newQuestion].answered < maxCount) && ($scope.questions[newQuestion].id != question.id) ){
         return newQuestion;
+      } else {
+        newQuestion = $scope.randomNumber();
+        continue;
+      }
+      if(count == 24){
+        count = 0;
       }
     }
   };
@@ -324,7 +346,7 @@ angular.module('ebi.controllers')
           template: "<center><h3><font color='blue'><b>CORRECT!</b></font></h3></center>"
         }).then(function(res) {
           $scope.correctAnswers = $scope.correctAnswers + 1;
-          $ionicSlideBoxDelegate.slide($scope.pickNextTrainingQuestion(question));
+          $ionicSlideBoxDelegate.slide($scope.pickNextQuestion(question));
           $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
         });
       };
@@ -369,7 +391,7 @@ angular.module('ebi.controllers')
       });
     } else {
       // next question
-      $ionicSlideBoxDelegate.slide($scope.pickNextTestQuestion(question));
+      $ionicSlideBoxDelegate.slide($scope.pickNextQuestion(question));
       $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
     }
   };
@@ -396,7 +418,7 @@ angular.module('ebi.controllers')
       });
     } else {
       // next question
-      $ionicSlideBoxDelegate.slide($scope.pickNextTestQuestion(question));
+      $ionicSlideBoxDelegate.slide($scope.pickNextQuestion(question));
       $scope.randomAnswers = $scope.shuffleArray(['a','b','c','d']);
     }
   };

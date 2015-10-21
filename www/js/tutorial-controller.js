@@ -73,15 +73,30 @@ angular.module('ebi.controllers')
   };
 
   $scope.pickNextTestQuestion = function(question){
-    while(true){
-      var newQuestion = $scope.randomNumber();
-      if (($scope.questions[newQuestion].answered == 2) || ($scope.questions[newQuestion].id == question.id) ){
-        continue;
-      } else {
+    var count = 0;
+    var newQuestion = $scope.randomNumber();
+    while(count < 24){
+      if (($scope.questions[newQuestion].answered < 3) && ($scope.questions[newQuestion].id != question.id) ){
         return newQuestion;
+      } else {
+        newQuestion = $scope.randomNumber();
+        continue;
+      }
+      if(count == 24){
+        count = 0;
       }
     }
   };
+  // $scope.pickNextTestQuestion = function(question){
+  //   while(true){
+  //     var newQuestion = $scope.randomNumber();
+  //     if (($scope.questions[newQuestion].answered == 2) || ($scope.questions[newQuestion].id == question.id) ){
+  //       continue;
+  //     } else {
+  //       return newQuestion;
+  //     }
+  //   }
+  // };
 
   $scope.maxAnswerCount = function(){
     if(Preferences.playType() == 'tut'){
