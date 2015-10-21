@@ -21,19 +21,19 @@
 
   <ion-content class="home-page light-purple-bg" direction='y'>
     <ion-slide-box disable-scroll="true" show-pager='false' delegate-handle='play-slide'>
-      <ion-slide ng-repeat="question in questions" class='answer-boxes animated fadeIn'>
-        <div class='qst'>
+      <ion-slide ng-repeat="question in questions" class='animated fadeIn'>
+        <div class='qst img-shadow'>
           <img ng-src="{{question.q}}" height='auto' width='150em'/>
         </div>
         <!-- <div class='box-shadow'></div> -->
         <div class='answer-boxes'>
           <div class='answers flex-row'>
-            <div class='flex-col' ng-click="pickAnswer(question, randomAnswers[0])"><img ng-src="{{question.opts[randomAnswers[0]]}}" height='auto' width='150em'/></div>
-            <div class='flex-col' ng-click="pickAnswer(question, randomAnswers[1])"><img ng-src="{{question.opts[randomAnswers[1]]}}" height='auto' width='150em'/></div>
+            <div class='flex-col img-shadow' ng-click="pickAnswer(question, randomAnswers[0])"><img ng-src="{{question.opts[randomAnswers[0]]}}" height='auto' width='150em'/></div>
+            <div class='flex-col img-shadow' ng-click="pickAnswer(question, randomAnswers[1])"><img ng-src="{{question.opts[randomAnswers[1]]}}" height='auto' width='150em'/></div>
           </div>
           <div class='answers flex-row'>
-            <div class='flex-col' ng-click="pickAnswer(question, randomAnswers[2])"><img ng-src="{{question.opts[randomAnswers[2]]}}" height='auto' width='150em'/></div>
-            <div class='flex-col' ng-click="pickAnswer(question, randomAnswers[3])"><img ng-src="{{question.opts[randomAnswers[3]]}}" height='auto' width='150em'/></div>
+            <div class='flex-col img-shadow' ng-click="pickAnswer(question, randomAnswers[2])"><img ng-src="{{question.opts[randomAnswers[2]]}}" height='auto' width='150em'/></div>
+            <div class='flex-col img-shadow' ng-click="pickAnswer(question, randomAnswers[3])"><img ng-src="{{question.opts[randomAnswers[3]]}}" height='auto' width='150em'/></div>
           </div>
         </div>
       </ion-slide>

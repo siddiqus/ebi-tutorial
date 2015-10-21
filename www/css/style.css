@@ -3,6 +3,27 @@
     src: url('../lib/fonts/Roboto-Regular.ttf');
 }
 
+.resp-item {
+  float: left;
+  margin: 0.1em;
+  position: relative;
+  /*padding: 5px;*/
+  /*width: 300px;*/
+  /*height: 300px;*/
+  /*border: 1px solid black;*/
+}
+
+.left {
+  float: right;
+  position: relative;
+}
+
+.right {
+  float: left;
+  position: relative;
+}
+
+
 /*SLIDE ANIMATION*/
 .slide-in-right {
   -webkit-transform: translateX(100%);
@@ -169,6 +190,18 @@ ion-content, .light-gray-background {
   opacity: 0.3;
 }
 
+.answer-boxes {
+  margin: 0.5em;
+  position: relative;
+  content: ".";
+  display: block;
+  /*height: 0;*/
+  clear: both;
+  /*visibility: hidden;*/
+  /*left: 5%;*/
+  /*right: 5%;*/
+}
+
 .qst {
   margin-bottom: 0.5em;
   box-shadow:           2px 2px 2px 0px lightgray !important;
@@ -176,22 +209,24 @@ ion-content, .light-gray-background {
   -moz-box-shadow:      2px 2px 2px 0px lightgray !important;
 }
 
-.answer-boxes .qst {
+.qst {
   margin-top: 0.3em;
 }
-.answer-boxes .qst img {
+
+.img-shadow img {
   box-shadow: 1px 1px 3px 0px gray;
   -webkit-box-shadow: 1px 1px 3px 0px gray;
   -moz-box-shadow: 1px 1px 3px 0px gray;
   border-radius: 0.2em;
 }
-.answer-boxes .answers img {
-  /*border: 1px solid lightgray;*/
+
+
+/*.answer-boxes .answers img {
   border-radius: 0.2em;
   box-shadow: 1px 1px 3px 0px gray;
   -webkit-box-shadow: 1px 1px 3px 0px gray;
   -moz-box-shadow: 1px 1px 3px 0px gray;
-}
+}*/
 
 .box-shadow {
   /*padding-bottom: 0.2em;*/

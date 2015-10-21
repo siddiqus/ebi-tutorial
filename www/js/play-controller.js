@@ -202,6 +202,23 @@ angular.module('ebi.controllers')
     }
   };
 
+
+  $scope.completePopup = function() {
+    return $ionicPopup.alert({
+      template: "<center><img class='col congrats-gif' ng-src='img/congrats.gif'></img><br> You have completed the program!</h3></center>",
+      buttons: [
+        {
+          type:'button-positive',
+          text:'Back to Home',
+          onTap: function(){
+            $scope.resetToPretest();
+            $location.path('tab.dash');
+          }
+        }
+      ]
+    });
+  };
+
   $scope.nextPlayState = function(){
     if(Preferences.playType == 'tut'){
       if($scope.playState == 'Training'){
@@ -248,19 +265,20 @@ angular.module('ebi.controllers')
       }
     }
     if($scope.programComplete){
-      var completePopup = $ionicPopup.alert({
-        template: "<center><h3>Congratulations! <br> You have completed the program.</h3></center>",
-        buttons: [
-          {
-            type:'button-positive',
-            text:'Back to Home',
-            onTap: function(){
-              $scope.resetToPretest();
-              $location.path('tab.dash');
-            }
-          }
-        ]
-      });
+      // var completePopup = $ionicPopup.alert({
+      //   template: "<center><h3>Congratulations! <br> You have completed the program.</h3></center>",
+      //   buttons: [
+      //     {
+      //       type:'button-positive',
+      //       text:'Back to Home',
+      //       onTap: function(){
+      //         $scope.resetToPretest();
+      //         $location.path('tab.dash');
+      //       }
+      //     }
+      //   ]
+      // });
+      $scope.completePopup();
     } else {
       $scope.correctAnswers = 0;
       $scope.testAnswered = 0;
@@ -285,19 +303,20 @@ angular.module('ebi.controllers')
     }
 
     if($scope.maintenanceComplete){
-      var maintenanceCompletePopup = $ionicPopup.alert({
-        template: "<center><h3>Congratulations! <br> You have completed the program.</h3></center>",
-        buttons: [
-          {
-            type:'button-positive',
-            text:'Back to Home',
-            onTap: function(){
-              $scope.resetToPretest();
-              $location.path('tab.dash');
-            }
-          }
-        ]
-      });
+      // var maintenanceCompletePopup = $ionicPopup.alert({
+      //   template: "<center><h3>Congratulations! <br> You have completed the program.</h3></center>",
+      //   buttons: [
+      //     {
+      //       type:'button-positive',
+      //       text:'Back to Home',
+      //       onTap: function(){
+      //         $scope.resetToPretest();
+      //         $location.path('tab.dash');
+      //       }
+      //     }
+      //   ]
+      // });
+      $scope.completePopup();
     } else {
       $scope.correctAnswers = 0;
       $scope.testAnswered = 0;
