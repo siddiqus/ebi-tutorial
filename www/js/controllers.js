@@ -1,14 +1,7 @@
 angular.module('ebi.controllers', [])
 
-.controller('DashCtrl', function($scope, $location, $rootScope, $ionicModal, $ionicSlideBoxDelegate, Categories, Preferences) {
+.controller('DashCtrl', function($scope, $state, $location, $rootScope, $ionicModal, $ionicSlideBoxDelegate, Categories, Preferences) {
   $scope.infoModalType = 'acq';
-
-  $ionicModal.fromTemplateUrl('templates/tutorial-modal.html', {
-    scope: $scope,
-    animation: 'slide-in-right'
-  }).then(function(modal) {
-    $scope.tutorialModal = modal;
-  });
 
   $ionicModal.fromTemplateUrl('templates/play-start-modal.html', {
     scope: $scope,
@@ -18,7 +11,9 @@ angular.module('ebi.controllers', [])
   });
 
   $scope.openTutorial = function() {
-    $scope.tutorialModal.show();
+    // $scope.tutorialModal.show();
+    $state.go("tutorial_info");
+
   };
   $scope.closeTutorial = function() {
     $rootScope.getSlideDelegate('tutorial-slide').slide(0);
@@ -55,12 +50,6 @@ angular.module('ebi.controllers', [])
     }
   };
 
-  $scope.startTutorial = function(){
-    Preferences.playType('tut');
-    $scope.closeTutorial();
-    $location.path('tutorial');
-  };
-
   $scope.pagerClicked = function(index){
     $rootScope.getSlideDelegate('tutorial-slide').slide(index);
   }
@@ -81,10 +70,19 @@ angular.module('ebi.controllers', [])
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
+.controller('TutorialInfoCtrl', function($scope, $rootScope, $ionicSlideBoxDelegate, $state, $stateParams, Preferences) {
+  // $rootScope.getSlideDelegate('tutorial-slide').slide(0);
 
+  $scope.startTutorial = function() {
+    Preferences.playType('tut');
+    $state.go('tutorial');
+  };
+
+  $scope.closeTutorial = function() {
+    $state.go("tab.dash");
+    $rootScope.getSlideDelegate('tutorial-slide').slide(0);
+  };
+})
 
 .controller('AccountCtrl', function($scope, $stateParams, $rootScope, $location, Categories, Preferences) {
   $scope.categories = Categories.all();

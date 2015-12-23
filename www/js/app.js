@@ -88,6 +88,12 @@ angular.module('ebi', ['ionic', 'ebi.controllers', 'ebi.services'])
     controller: 'TutorialCtrl'
   })
 
+  .state('tutorial_info', {
+    url: '/tutorial_info',
+    templateUrl: 'templates/tutorial.html',
+    controller: 'TutorialInfoCtrl'
+  })
+
   // setup an abstract state for the tabs directive
   .state('tab', {
     url: '/tab',

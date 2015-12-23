@@ -1,5 +1,6 @@
 angular.module('ebi.controllers')
-.controller('TutorialCtrl', function($scope, $rootScope, $stateParams, $location, $ionicPopup, $ionicSlideBoxDelegate, Questions, Preferences) {
+.controller('TutorialCtrl', function($scope, $state, $rootScope, $stateParams, $location, $ionicPopup, $ionicSlideBoxDelegate,
+  Questions, Preferences) {
 
   // HELPER Methods
   $scope.randomNumber = function(){
@@ -87,16 +88,7 @@ angular.module('ebi.controllers')
       }
     }
   };
-  // $scope.pickNextTestQuestion = function(question){
-  //   while(true){
-  //     var newQuestion = $scope.randomNumber();
-  //     if (($scope.questions[newQuestion].answered == 2) || ($scope.questions[newQuestion].id == question.id) ){
-  //       continue;
-  //     } else {
-  //       return newQuestion;
-  //     }
-  //   }
-  // };
+
 
   $scope.maxAnswerCount = function(){
     if(Preferences.playType() == 'tut'){

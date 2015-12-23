@@ -1,10 +1,9 @@
-<ion-modal-view class='modal'>
- <ion-header-bar class="bar bar-royal" align-title='center' right-buttons='closeButton'>
-   <h1 class="title"> HOW TO PLAY </h1>
-   <div class='buttons'>
-     <button class="button button-royal" ng-click="closeTutorial()"><b>Close</b></button>
-   </div>
- </ion-header-bar>
+<ion-view class="animated fadeIn" view-title="HOW TO PLAY">
+
+ <ion-nav-buttons side="right">
+   <button class="button button-royal" ng-click="closeTutorial()"><b>Exit</b></button>
+ </ion-nav-buttons>
+
  <ion-content class="card padding tutorial-content light-purple-bg">
    <ion-slide-box does-continue="true" on-slide-changed="slideHasChanged($index)" pager-click="pagerClicked(index)"
     delegate-handle='tutorial-slide' show-pager='true'>
@@ -85,4 +84,4 @@
  <!-- <ion-footer-bar class='bar bar-footer bar-royal' ng-click='startTutorial()'>
        <h1 class='title'>START TUTORIAL</h1>
  </ion-footer-bar> -->
-</ion-modal-view>
+</ion-view>
