@@ -80,8 +80,11 @@ angular.module('ebi.controllers', [])
 
   $scope.closeTutorial = function() {
     $state.go("tab.dash");
-    $rootScope.getSlideDelegate('tutorial-slide').slide(0);
   };
+
+  $scope.$on('$stateChangeSuccess', function() {
+    $rootScope.getSlideDelegate('tutorial-slide').slide(0);
+  });
 })
 
 .controller('AccountCtrl', function($scope, $stateParams, $rootScope, $location, Categories, Preferences) {
